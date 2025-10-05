@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Data files (uncomment if data files are too large)
+# data/*.csv
+datamart/bronze/
+datamart/silver/
+datamart/gold/
+
+# Spark
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Logs
+*.log
+
+# Backup files
+*_backup.md
+README_backup.md
+
+# Assignment PDF (if you don't want to share it)
+# Assignment 1.pdf
