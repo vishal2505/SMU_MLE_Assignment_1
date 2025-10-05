@@ -1,544 +1,1086 @@
-# Credit Default Prediction - Data Pipeline# Credit Default Prediction - Data Pipeline
+# Credit Default Prediction - Data Pipeline# Credit Default Prediction - Data Pipeline# Credit Default Prediction - Data Pipeline
 
 
 
-## 📋 Executive Summary## 📋 Executive Summary
+## 📋 Executive Summary
 
 
 
-A production-ready data engineering pipeline implementing the **Medallion Architecture** (Bronze → Silver → Gold) for credit risk modeling. This pipeline processes raw customer and loan data into ML-ready features for predicting loan defaults at 6-month observation period (MOB=6) using only application-time (MOB=0) features.A production-ready data engineering pipeline implementing the **Medallion Architecture** (Bronze → Silver → Gold) for credit risk modeling. This pipeline processes raw customer and loan data into ML-ready features for predicting loan defaults at 6-month observation period (MOB=6) using only application-time (MOB=0) features.
+A production-ready data engineering pipeline implementing the **Medallion Architecture** (Bronze → Silver → Gold) for credit risk modeling. This pipeline processes raw customer and loan data into ML-ready features for predicting loan defaults at 6-month observation period (MOB=6) using only application-time (MOB=0) features.## Executive Summary
 
 
+
+### Key Metrics
+
+- **Processing Period**: 24 monthly snapshots (Jan 2023 - Dec 2024)
+
+- **Data Sources**: 4 distinct operational systems  A production-ready data engineering pipeline implementing the **Medallion Architecture** (Bronze → Silver → Gold) for credit risk modeling. This pipeline processes raw customer and loan data into ML-ready features for predicting loan defaults at 6-month observation period (MOB=6) using only application-time (MOB=0) features.A production-ready data engineering pipeline implementing the **Medallion Architecture** (Bronze → Silver → Gold) for credit risk modeling. This pipeline processes raw customer and loan data into ML-ready features for predicting loan defaults at 6-month observation period (MOB=6) using only application-time (MOB=0) features.
+
+- **Features Engineered**: 40+ derived features
+
+- **Target Definition**: Default (DPD ≥ 30 days at MOB=6)
+
+- **Temporal Design**: Application-time features (MOB=0) → 6-month labels (MOB=6)
 
 ### Key Metrics### Key Metrics
 
+---
+
 - **Processing Period**: 24 monthly snapshots (Jan 2023 - Dec 2024)- **Processing Period**: 24 monthly snapshots (Jan 2023 - Dec 2024)
+
+## 🎯 Business Problem
 
 - **Data Sources**: 4 distinct operational systems  - **Data Sources**: 4 distinct operational systems
 
+**Objective**: Predict loan default risk at the time of application to support credit approval decisions.
+
 - **Features Engineered**: 40+ derived features- **Features Engineered**: 40+ derived features
+
+**Challenge**: At loan application (MOB=0), the bank must decide whether to approve the loan using only information available at that moment. The success of this decision can only be evaluated 6 months later (MOB=6) by observing whether the customer defaulted.
 
 - **Target Definition**: Default (DPD ≥ 30 days at MOB=6)- **Target Definition**: Default (DPD ≥ 30 days at MOB=6)
 
-- **Temporal Design**: Application-time features (MOB=0) → 6-month labels (MOB=6)- **Temporal Design**: Application-time features (MOB=0) → 6-month labels (MOB=6)
+**Solution**: Build a temporal ML pipeline that:
+
+1. Uses **only MOB=0 features** (application time) for prediction- **Temporal Design**: Application-time features (MOB=0) → 6-month labels (MOB=6)- **Temporal Design**: Application-time features (MOB=0) → 6-month labels (MOB=6)
+
+2. Labels outcomes using **MOB=6 performance** (6-month observation)
+
+3. Prevents temporal leakage by excluding future loan performance data
 
 
 
-------
+---------
 
 
 
-## 🎯 Business Problem## 🏗️ Architecture Overview
+## 🏗️ Architecture Overview
 
 
 
-**Objective**: Predict loan default risk at the time of application to support credit approval decisions.### High-Level Architecture
+### Medallion Architecture## 🎯 Business Problem## 🏗️ Architecture Overview
 
 
 
-**Challenge**: At loan application (MOB=0), the bank must decide whether to approve the loan using only information available at that moment. The success of this decision can only be evaluated 6 months later (MOB=6) by observing whether the customer defaulted.```
-
-┌─────────────────────────────────────────────────────────────────┐
-
-**Solution**: Build a temporal ML pipeline that:│                        DATA SOURCES                              │
-
-1. Uses **only MOB=0 features** (application time) for prediction│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-
-2. Labels outcomes using **MOB=6 performance** (6-month observation)│  │loan_daily│  │attributes│  │financials│  │clickstream│       │
-
-3. Prevents temporal leakage by excluding future loan performance data│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
-
-└─────────────────────────────────────────────────────────────────┘
-
----                              │
-
-                              ▼
-
-## 🏗️ Architecture Overview┌─────────────────────────────────────────────────────────────────┐
-
-│                    BRONZE LAYER (Raw Data)                       │
-
-### Medallion Architecture│              Schema Validation | Data Ingestion                  │
-
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-
-```│  │  .csv    │  │  .csv    │  │  .csv    │  │  .csv    │       │
-
-┌──────────────────────────────────────────────────────────────────┐│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
-
-│                         RAW DATA SOURCES                          │└─────────────────────────────────────────────────────────────────┘
-
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              │
-
-│  │  Loan    │  │ Customer │  │Financial │  │ Digital  │        │                              ▼
-
-│  │Management│  │Attributes│  │  Data    │  │Behavior  │        │┌─────────────────────────────────────────────────────────────────┐
-
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        ││              SILVER LAYER (Cleaned & Enriched)                   │
-
-└──────────────────────────────────────────────────────────────────┘│        Type Casting | Feature Engineering | Validation           │
-
-                               ││  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-
-                               ▼│  │ .parquet │  │ .parquet │  │ .parquet │  │ .parquet │       │
-
-┌──────────────────────────────────────────────────────────────────┐│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
-
-│                    🥉 BRONZE LAYER (Raw)                         │└─────────────────────────────────────────────────────────────────┘
-
-│              ✓ No Transformation  ✓ Full Lineage                 │                              │
-
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              ▼
-
-│  │loan_daily│  │attributes│  │financials│  │clickstream│        │┌─────────────────────────────────────────────────────────────────┐
-
-│  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │        ││               GOLD LAYER (ML-Ready Features)                     │
-
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        ││                  Join Operations | Aggregation                   │
-
-└──────────────────────────────────────────────────────────────────┘│         ┌──────────────────┐    ┌──────────────────┐           │
-
-                               ││         │  Feature Store   │    │   Label Store    │           │
-
-                               ▼│         │   (Features)     │    │   (Targets)      │           │
-
-┌──────────────────────────────────────────────────────────────────┐│         └──────────────────┘    └──────────────────┘           │
-
-│              🥈 SILVER LAYER (Cleaned & Enriched)                │└─────────────────────────────────────────────────────────────────┘
-
-│    ✓ Type Casting  ✓ Data Quality  ✓ Feature Engineering        │                              │
-
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              ▼
-
-│  │loan_daily│  │attributes│  │financials│  │clickstream│        │                   ┌────────────────────┐
-
-│  │(.parquet)│  │(.parquet)│  │(.parquet)│  │(.parquet)│        │                   │   ML Model Training │
-
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │                   └────────────────────┘
-
-└──────────────────────────────────────────────────────────────────┘```
-
-                               │
-
-                               ▼---
+```
 
 ┌──────────────────────────────────────────────────────────────────┐
 
-│                🥇 GOLD LAYER (ML-Ready)                          │## 🔄 Pipeline Layers
+│                         RAW DATA SOURCES                          │**Objective**: Predict loan default risk at the time of application to support credit approval decisions.### High-Level Architecture
 
-│           ✓ Join Operations  ✓ Temporal Separation               │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
 
-│                                                                   │### 1️⃣ Bronze Layer: Raw Data Ingestion
+│  │  Loan    │  │ Customer │  │Financial │  │ Digital  │        │
 
-│         ┌──────────────────┐    ┌──────────────────┐            │
+│  │Management│  │Attributes│  │  Data    │  │Behavior  │        │
 
-│         │  Feature Store   │    │   Label Store    │            │**Purpose**: Capture data exactly as received from source systems
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │**Challenge**: At loan application (MOB=0), the bank must decide whether to approve the loan using only information available at that moment. The success of this decision can only be evaluated 6 months later (MOB=6) by observing whether the customer defaulted.```
 
-│         │    (MOB=0)       │    │    (MOB=6)       │            │
+└──────────────────────────────────────────────────────────────────┘
 
-│         │  Application     │    │  6-Month         │            │#### Design Decisions
-
-│         │  Time Features   │    │  Observation     │            │- ✅ **Format**: CSV (human-readable, easy debugging)
-
-│         └──────────────────┘    └──────────────────┘            │- ✅ **Partitioning**: By snapshot_date (YYYY_MM_DD)
-
-└──────────────────────────────────────────────────────────────────┘- ✅ **No Transformation**: Maintain data lineage and auditability
-
-                               │- ✅ **Idempotent**: Overwrite mode for reprocessing capability
+                               │┌─────────────────────────────────────────────────────────────────┐
 
                                ▼
 
-                   ┌────────────────────────┐#### Data Sources
+┌──────────────────────────────────────────────────────────────────┐**Solution**: Build a temporal ML pipeline that:│                        DATA SOURCES                              │
 
-                   │  ML Model Training     │
+│                    🥉 BRONZE LAYER (Raw)                         │
 
-                   │  (Temporal Validation) │| Source | Records | Key Fields | Update Frequency |
+│              ✓ No Transformation  ✓ Full Lineage                 │1. Uses **only MOB=0 features** (application time) for prediction│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
 
-                   └────────────────────────┘|--------|---------|------------|------------------|
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
 
-```| **loan_daily** | ~1000/month | loan_id, installment_num, amounts | Daily snapshot |
+│  │loan_daily│  │attributes│  │financials│  │clickstream│        │2. Labels outcomes using **MOB=6 performance** (6-month observation)│  │loan_daily│  │attributes│  │financials│  │clickstream│       │
 
-| **attributes** | ~800/month | Customer_ID, demographics | Monthly snapshot |
+│  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │        │
 
----| **financials** | ~800/month | Customer_ID, income, debts | Monthly snapshot |
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │3. Prevents temporal leakage by excluding future loan performance data│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
 
-| **clickstream** | ~800/month | Customer_ID, 20 features | Daily aggregation |
+└──────────────────────────────────────────────────────────────────┘
 
-## 🔄 Pipeline Layers
+                               │└─────────────────────────────────────────────────────────────────┘
 
-#### Directory Structure
+                               ▼
 
-### 1️⃣ Bronze Layer: Raw Data Ingestion```
+┌──────────────────────────────────────────────────────────────────┐---                              │
 
-datamart/bronze/
+│              🥈 SILVER LAYER (Cleaned & Enriched)                │
 
-**Purpose**: Capture data exactly as received from source systems with full lineage├── bronze_loan_daily/
+│    ✓ Type Casting  ✓ Data Quality  ✓ Feature Engineering        │                              ▼
 
-│   ├── bronze_loan_daily_2023_01_01.csv
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
 
-#### Design Decisions│   └── bronze_loan_daily_2024_12_01.csv
+│  │loan_daily│  │attributes│  │financials│  │clickstream│        │## 🏗️ Architecture Overview┌─────────────────────────────────────────────────────────────────┐
 
-├── bronze_attributes/
+│  │(.parquet)│  │(.parquet)│  │(.parquet)│  │(.parquet)│        │
 
-| Decision | Rationale |├── bronze_financials/
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        ││                    BRONZE LAYER (Raw Data)                       │
 
-|----------|-----------|└── bronze_clickstream/
+└──────────────────────────────────────────────────────────────────┘
 
-| **Format: CSV** | Human-readable, debugging friendly, industry standard |```
+                               │### Medallion Architecture│              Schema Validation | Data Ingestion                  │
 
-| **Partitioning: Date-based** | Enables incremental processing and backfilling |
+                               ▼
 
-| **No Transformation** | Maintains data lineage and audit trail |---
+┌──────────────────────────────────────────────────────────────────┐│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
 
-| **Idempotent Writes** | Supports reprocessing without side effects |
+│                🥇 GOLD LAYER (ML-Ready)                          │
 
-### 2️⃣ Silver Layer: Cleaned & Enriched Data
+│           ✓ Join Operations  ✓ Temporal Separation               │```│  │  .csv    │  │  .csv    │  │  .csv    │  │  .csv    │       │
 
-#### Data Sources
+│                                                                   │
 
-**Purpose**: Apply business logic, data quality rules, and feature engineering
+│         ┌──────────────────┐    ┌──────────────────┐            │┌──────────────────────────────────────────────────────────────────┐│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
 
-| Source | Records/Month | Key Identifier | Business Context |
+│         │  Feature Store   │    │   Label Store    │            │
 
-|--------|---------------|----------------|------------------|#### Design Decisions
+│         │    (MOB=0)       │    │    (MOB=6)       │            ││                         RAW DATA SOURCES                          │└─────────────────────────────────────────────────────────────────┘
 
-| **loan_daily** | ~1,000 | loan_id + snapshot_date | Daily loan performance tracking |- ✅ **Format**: Parquet (columnar, compressed, efficient)
+│         │  Application     │    │  6-Month         │            │
 
-| **attributes** | ~800 | Customer_ID | Customer demographics (monthly) |- ✅ **Schema Enforcement**: Explicit type casting for data quality
+│         │  Time Features   │    │  Observation     │            ││  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              │
 
-| **financials** | ~800 | Customer_ID | Financial profile (monthly) |- ✅ **Feature Engineering**: Domain-specific calculated fields
+│         └──────────────────┘    └──────────────────┘            │
 
-| **clickstream** | ~800 | Customer_ID | Digital engagement features |- ✅ **Validation**: Null handling, outlier detection
+└──────────────────────────────────────────────────────────────────┘│  │  Loan    │  │ Customer │  │Financial │  │ Digital  │        │                              ▼
 
+                               │
 
+                               ▼│  │Management│  │Attributes│  │  Data    │  │Behavior  │        │┌─────────────────────────────────────────────────────────────────┐
 
----#### Transformations by Table
+                   ┌────────────────────────┐
 
+                   │  ML Model Training     ││  └──────────┘  └──────────┘  └──────────┘  └──────────┘        ││              SILVER LAYER (Cleaned & Enriched)                   │
 
+                   │  (Temporal Validation) │
 
-### 2️⃣ Silver Layer: Cleaned & Enriched Data##### 📊 Loan Daily
+                   └────────────────────────┘└──────────────────────────────────────────────────────────────────┘│        Type Casting | Feature Engineering | Validation           │
 
-| Feature | Calculation | Business Logic |
+```
 
-**Purpose**: Apply business logic, data quality rules, and feature engineering|---------|-------------|----------------|
-
-| **mob** | installment_num | Month on Book |
-
-#### Data Quality Operations| **dpd** | Days between snapshot and first missed payment | Days Past Due |
-
-| **installments_missed** | CEIL(overdue_amt / due_amt) | Number of missed payments |
-
-##### 1. **Data Cleaning**
-
-- **Underscore Removal**: Strip trailing/wrapped underscores from numeric fields##### 👤 Attributes
-
-  - Example: `'40_'` → `'40'`, `'__10000__'` → `'10000'`| Feature | Calculation | Business Logic |
-
-  - Affected columns: Age, Annual_Income, Num_of_Loan, Outstanding_Debt, etc.|---------|-------------|----------------|
-
-| **age_group** | Age bucketing | "18-24", "25-34", "35-44", "45-54", "55-64", "65+" |
-
-##### 2. **Type Casting**| **occupation_category** | Group similar occupations | "Technical", "Professional", "Management", "Education", "Other" |
-
-```python
-
-# Strict schema enforcement##### 💰 Financials
-
-Age: IntegerType()| Feature | Calculation | Business Logic |
-
-Annual_Income: FloatType()|---------|-------------|----------------|
-
-loan_amt: FloatType()| **debt_to_income_ratio** | (Total_EMI / Monthly_Salary) × 100 | DTI percentage |
-
-snapshot_date: DateType()| **savings_rate** | (Amount_invested / Monthly_Salary) × 100 | Savings percentage |
-
-```| **income_category** | Annual income bucketing | "Low", "Medium", "High", "Very High" |
-
-| **credit_health_score** | Based on delayed payments | 100 (none) to 40 (>5 delays) |
-
-##### 3. **Data Validation**
-
-- **Age Validation**: Set to `null` if Age > 150 or Age < 0##### 🖱️ Clickstream
-
-- **Balance Validation**: Set to `null` if |Monthly_Balance| > $1M (data quality markers)| Feature | Calculation | Business Logic |
-
-- **Rationale**: `null` preserves data quality signals; `0` implies false information|---------|-------------|----------------|
-
-| **total_activity_score** | SUM(fe_1 to fe_20) | Overall digital engagement |
-
-##### 4. **Feature Engineering**| **avg_feature_value** | total_activity_score / 20 | Average engagement per feature |
-
-| **engagement_level** | Score bucketing | "Low", "Medium", "High", "Very High" |
-
-**Loan Performance Features** (in loan_daily):| **active_feature_count** | COUNT(non-zero features) | Breadth of engagement |
-
-- `mob`: Month on book (installment_num)
-
-- `dpd`: Days past due (calculated from overdue amount and installment dates)#### Directory Structure
-
-- `installments_missed`: Count of missed installments```
-
-datamart/silver/
-
-**Customer Demographic Features** (in attributes):├── silver_loan_daily/
-
-- `age_group`: Categorical age buckets (18-24, 25-34, ..., 65+)│   └── silver_loan_daily_2023_01_01.parquet
-
-- `occupation_category`: Grouped occupations (Technical, Professional, Management, Education, Other)├── silver_attributes/
-
-├── silver_financials/
-
-**Financial Health Features** (in financials):└── silver_clickstream/
-
-- `debt_to_income_ratio`: (Total_EMI_per_month / Monthly_Inhand_Salary) × 100```
-
-- `income_category`: Income brackets (Low, Medium, High, Very High)
+                               ││  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
 
 ---
 
-#### Technical Decisions
+                               ▼│  │ .parquet │  │ .parquet │  │ .parquet │  │ .parquet │       │
 
-### 3️⃣ Gold Layer: ML-Ready Feature & Label Stores
+## 🔄 Pipeline Layers
+
+┌──────────────────────────────────────────────────────────────────┐│  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
+
+### 1️⃣ Bronze Layer: Raw Data Ingestion
+
+│                    🥉 BRONZE LAYER (Raw)                         │└─────────────────────────────────────────────────────────────────┘
+
+**Purpose**: Capture data exactly as received from source systems with full lineage
+
+│              ✓ No Transformation  ✓ Full Lineage                 │                              │
+
+#### Design Decisions
+
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              ▼
 
 | Decision | Rationale |
 
-|----------|-----------|**Purpose**: Create unified, model-ready datasets for ML pipelines
+|----------|-----------|│  │loan_daily│  │attributes│  │financials│  │clickstream│        │┌─────────────────────────────────────────────────────────────────┐
+
+| **Format: CSV** | Human-readable, debugging friendly, industry standard |
+
+| **Partitioning: Date-based** | Enables incremental processing and backfilling |│  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │  │  (.csv)  │        ││               GOLD LAYER (ML-Ready Features)                     │
+
+| **No Transformation** | Maintains data lineage and audit trail |
+
+| **Idempotent Writes** | Supports reprocessing without side effects |│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        ││                  Join Operations | Aggregation                   │
+
+
+
+#### Data Sources└──────────────────────────────────────────────────────────────────┘│         ┌──────────────────┐    ┌──────────────────┐           │
+
+
+
+| Source | Records/Month | Key Identifier | Business Context |                               ││         │  Feature Store   │    │   Label Store    │           │
+
+|--------|---------------|----------------|------------------|
+
+| **loan_daily** | ~1,000 | loan_id + snapshot_date | Daily loan performance tracking |                               ▼│         │   (Features)     │    │   (Targets)      │           │
+
+| **attributes** | ~800 | Customer_ID | Customer demographics (monthly) |
+
+| **financials** | ~800 | Customer_ID | Financial profile (monthly) |┌──────────────────────────────────────────────────────────────────┐│         └──────────────────┘    └──────────────────┘           │
+
+| **clickstream** | ~800 | Customer_ID | Digital engagement features |
+
+│              🥈 SILVER LAYER (Cleaned & Enriched)                │└─────────────────────────────────────────────────────────────────┘
+
+---
+
+│    ✓ Type Casting  ✓ Data Quality  ✓ Feature Engineering        │                              │
+
+### 2️⃣ Silver Layer: Cleaned & Enriched Data
+
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │                              ▼
+
+**Purpose**: Apply business logic, data quality rules, and feature engineering
+
+│  │loan_daily│  │attributes│  │financials│  │clickstream│        │                   ┌────────────────────┐
+
+#### Data Quality Operations
+
+│  │(.parquet)│  │(.parquet)│  │(.parquet)│  │(.parquet)│        │                   │   ML Model Training │
+
+##### 1. Data Cleaning
+
+- **Underscore Removal**: Strip trailing/wrapped underscores from numeric fields│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │                   └────────────────────┘
+
+  - Example: `'40_'` → `'40'`, `'__10000__'` → `'10000'`
+
+  - Affected columns: Age, Annual_Income, Num_of_Loan, Outstanding_Debt, etc.└──────────────────────────────────────────────────────────────────┘```
+
+
+
+##### 2. Type Casting                               │
+
+```python
+
+# Strict schema enforcement                               ▼---
+
+Age: IntegerType()
+
+Annual_Income: FloatType()┌──────────────────────────────────────────────────────────────────┐
+
+loan_amt: FloatType()
+
+snapshot_date: DateType()│                🥇 GOLD LAYER (ML-Ready)                          │## 🔄 Pipeline Layers
+
+```
+
+│           ✓ Join Operations  ✓ Temporal Separation               │
+
+##### 3. Data Validation
+
+- **Age Validation**: Set to `null` if Age > 150 or Age < 0│                                                                   │### 1️⃣ Bronze Layer: Raw Data Ingestion
+
+- **Balance Validation**: Set to `null` if |Monthly_Balance| > $1M (data quality markers)
+
+- **Rationale**: `null` preserves data quality signals; `0` implies false information│         ┌──────────────────┐    ┌──────────────────┐            │
+
+
+
+##### 4. Feature Engineering│         │  Feature Store   │    │   Label Store    │            │**Purpose**: Capture data exactly as received from source systems
+
+
+
+**Loan Performance Features** (in loan_daily):│         │    (MOB=0)       │    │    (MOB=6)       │            │
+
+- `mob`: Month on book (installment_num)
+
+- `dpd`: Days past due (calculated from overdue amount and installment dates)│         │  Application     │    │  6-Month         │            │#### Design Decisions
+
+- `installments_missed`: Count of missed installments
+
+│         │  Time Features   │    │  Observation     │            │- ✅ **Format**: CSV (human-readable, easy debugging)
+
+**Customer Demographic Features** (in attributes):
+
+- `age_group`: Categorical age buckets (18-24, 25-34, ..., 65+)│         └──────────────────┘    └──────────────────┘            │- ✅ **Partitioning**: By snapshot_date (YYYY_MM_DD)
+
+- `occupation_category`: Grouped occupations (Technical, Professional, Management, Education, Other)
+
+└──────────────────────────────────────────────────────────────────┘- ✅ **No Transformation**: Maintain data lineage and auditability
+
+**Financial Health Features** (in financials):
+
+- `debt_to_income_ratio`: (Total_EMI_per_month / Monthly_Inhand_Salary) × 100                               │- ✅ **Idempotent**: Overwrite mode for reprocessing capability
+
+- `income_category`: Income brackets (Low, Medium, High, Very High)
+
+                               ▼
+
+#### Technical Decisions
+
+                   ┌────────────────────────┐#### Data Sources
+
+| Decision | Rationale |
+
+|----------|-----------|                   │  ML Model Training     │
 
 | **Format: Parquet** | Columnar storage, compression, schema evolution |
 
-| **Null Handling** | Preserve data quality signals vs. imputation |#### Design Decisions
+| **Null Handling** | Preserve data quality signals vs. imputation |                   │  (Temporal Validation) │| Source | Records | Key Fields | Update Frequency |
 
-| **Feature Naming** | Snake_case for consistency |- ✅ **Star Schema**: Denormalized for ML performance
+| **Feature Naming** | Snake_case for consistency |
 
-| **Overwrite Mode** | Enable reprocessing for data corrections |- ✅ **Feature Store**: All predictors in one table
-
-- ✅ **Label Store**: Separate target variables
-
----- ✅ **Join Key**: Customer_ID + loan_id + snapshot_date
+| **Overwrite Mode** | Enable reprocessing for data corrections |                   └────────────────────────┘|--------|---------|------------|------------------|
 
 
 
-### 3️⃣ Gold Layer: ML-Ready Feature & Label Stores#### Gold Layer Components
+---```| **loan_daily** | ~1000/month | loan_id, installment_num, amounts | Daily snapshot |
 
 
 
-**Purpose**: Create temporally correct feature-label pairs for ML training```
+### 3️⃣ Gold Layer: ML-Ready Feature & Label Stores| **attributes** | ~800/month | Customer_ID, demographics | Monthly snapshot |
 
-┌─────────────────────────────────────────────────────────┐
 
-#### Critical Design: Temporal Separation│                    FEATURE STORE                         │
 
-│  ┌────────────┐ ┌────────────┐ ┌────────────┐          │
+**Purpose**: Create temporally correct feature-label pairs for ML training---| **financials** | ~800/month | Customer_ID, income, debts | Monthly snapshot |
 
-```│  │ Loan Data  │ │  Customer  │ │  Digital   │          │
 
-Timeline:│  │  Features  │+│  Financial │+│ Engagement │          │
 
-││  │            │ │  Features  │ │  Features  │          │
+#### Critical Design: Temporal Separation| **clickstream** | ~800/month | Customer_ID, 20 features | Daily aggregation |
 
-├─ T=0 (MOB=0) ──────────────────────> T=6 months (MOB=6)│  └────────────┘ └────────────┘ └────────────┘          │
 
-│  Application Time                    Observation Time│                                                          │
 
-│  ├─ Feature Collection               ├─ Label Creation│  35+ Features | Left Join on Customer_ID                │
+```## 🔄 Pipeline Layers
 
-│  │  • Customer demographics          │  • Did customer default?└─────────────────────────────────────────────────────────┘
+Timeline:
+
+│#### Directory Structure
+
+├─ T=0 (MOB=0) ──────────────────────> T=6 months (MOB=6)
+
+│  Application Time                    Observation Time### 1️⃣ Bronze Layer: Raw Data Ingestion```
+
+│  ├─ Feature Collection               ├─ Label Creation
+
+│  │  • Customer demographics          │  • Did customer default?datamart/bronze/
 
 │  │  • Financial profile              │  • DPD >= 30 days?
 
-│  │  • Clickstream behavior           │  • Label: 0 or 1┌─────────────────────────────────────────────────────────┐
+│  │  • Clickstream behavior           │  • Label: 0 or 1**Purpose**: Capture data exactly as received from source systems with full lineage├── bronze_loan_daily/
 
-│  │  • Loan application details       ││                     LABEL STORE                          │
+│  │  • Loan application details       │
 
-│  │                                   ││                                                          │
+│  │                                   ││   ├── bronze_loan_daily_2023_01_01.csv
 
-│  └─ Features → Feature Store         └─ Labels → Label Store│  loan_id | Customer_ID | label | label_def | snapshot   │
+│  └─ Features → Feature Store         └─ Labels → Label Store
 
-```│  ─────────────────────────────────────────────────────  │
+```#### Design Decisions│   └── bronze_loan_daily_2024_12_01.csv
 
-│  L001    | C123        | 1     | 30dpd_6mob| 2023-06-01│
 
-#### ⚠️ Preventing Temporal Leakage│                                                          │
 
-│  Filter: MOB = 6 | Label: DPD >= 30 → Default (1)       │
+#### ⚠️ Preventing Temporal Leakage├── bronze_attributes/
 
-**Problem**: Using features from MOB 1-6 would create data leakage, as loan performance data wouldn't be available at application time in production.└─────────────────────────────────────────────────────────┘
 
-```
 
-**Solution**:
+**Problem**: Using features from MOB 1-6 would create data leakage, as loan performance data wouldn't be available at application time in production.| Decision | Rationale |├── bronze_financials/
 
-1. **Feature Store**: Filter `loan_daily` for `mob == 0` only#### Feature Store Schema
 
-2. **Label Store**: Filter `loan_daily` for `mob == 6` to observe outcomes
 
-3. **Excluded Features** (not available at MOB=0):| Category | Features | Count |
+**Solution**:|----------|-----------|└── bronze_clickstream/
 
-   - `installment_num`, `due_amt`, `paid_amt`, `overdue_amt`, `balance`, `dpd`|----------|----------|-------|
+1. **Feature Store**: Filter `loan_daily` for `mob == 0` only
 
-   - These represent future loan performance| **Loan Metrics** | loan_amt, tenure, balance, dpd, mob | 7 |
+2. **Label Store**: Filter `loan_daily` for `mob == 6` to observe outcomes| **Format: CSV** | Human-readable, debugging friendly, industry standard |```
 
-| **Demographics** | age, age_group, occupation_category | 3 |
+3. **Excluded Features** (not available at MOB=0):
 
-**Business Justification**:| **Financial Health** | income, DTI, savings_rate, credit_health_score | 8 |
+   - `installment_num`, `due_amt`, `paid_amt`, `overdue_amt`, `balance`, `dpd`| **Partitioning: Date-based** | Enables incremental processing and backfilling |
 
-> *"At the time a customer applies for a loan, can we predict if they will default at MOB=6?"*| **Credit Behavior** | num_delayed_payments, credit_utilization, outstanding_debt | 5 |
+   - These represent future loan performance
 
-| **Digital Engagement** | activity_score, engagement_level, active_features | 4 |
+| **No Transformation** | Maintains data lineage and audit trail |---
 
-The loan officer must make an approval decision **today** (MOB=0) using only current information:| **Time Variables** | snapshot_date, loan_start_date | 2 |
+**Business Justification**:
+
+> *"At the time a customer applies for a loan, can we predict if they will default at MOB=6?"*| **Idempotent Writes** | Supports reprocessing without side effects |
+
+
+
+The loan officer must make an approval decision **today** (MOB=0) using only current information:### 2️⃣ Silver Layer: Cleaned & Enriched Data
 
 - Customer demographics and credit history
 
-- Financial position and debt ratios**Total: 35+ Features**
+- Financial position and debt ratios#### Data Sources
 
 - Digital engagement behavior
 
-- Loan amount and tenure requested#### Label Store Design
+- Loan amount and tenure requested**Purpose**: Apply business logic, data quality rules, and feature engineering
 
 
 
-The correctness of this decision is evaluated **6 months later** (MOB=6) by checking if the customer defaulted (DPD ≥ 30 days).**Target Definition**: 
+The correctness of this decision is evaluated **6 months later** (MOB=6) by checking if the customer defaulted (DPD ≥ 30 days).| Source | Records/Month | Key Identifier | Business Context |
 
-- **Observation Point**: Month on Book (MOB) = 6
 
-#### Feature Store Structure- **Default Definition**: Days Past Due (DPD) ≥ 30
 
-- **Binary Classification**: 1 = Default, 0 = Non-Default
+#### Feature Store Structure|--------|---------------|----------------|------------------|#### Design Decisions
 
-**Dimensions**: ~800 rows × 40+ columns per snapshot
 
-**Business Rationale**:
 
-**Feature Categories**:- 6 MOB provides sufficient payment history
+**Dimensions**: ~800 rows × 40+ columns per snapshot| **loan_daily** | ~1,000 | loan_id + snapshot_date | Daily loan performance tracking |- ✅ **Format**: Parquet (columnar, compressed, efficient)
 
-- 30 DPD aligns with regulatory standards
 
-| Category | Features | Source Table |- Early warning system for intervention
+
+**Feature Categories**:| **attributes** | ~800 | Customer_ID | Customer demographics (monthly) |- ✅ **Schema Enforcement**: Explicit type casting for data quality
+
+
+
+| Category | Features | Source Table || **financials** | ~800 | Customer_ID | Financial profile (monthly) |- ✅ **Feature Engineering**: Domain-specific calculated fields
 
 |----------|----------|--------------|
 
-| **Loan Application** | loan_id, loan_amt, tenure, loan_start_date | loan_daily (MOB=0) |#### Directory Structure
+| **Loan Application** | loan_id, loan_amt, tenure, loan_start_date | loan_daily (MOB=0) || **clickstream** | ~800 | Customer_ID | Digital engagement features |- ✅ **Validation**: Null handling, outlier detection
 
-| **Demographics** | customer_age, age_group, occupation_category | attributes |```
+| **Demographics** | customer_age, age_group, occupation_category | attributes |
+
+| **Financial Profile** | Annual_Income, Monthly_Inhand_Salary, debt_to_income_ratio, income_category | financials |
+
+| **Credit Behavior** | Num_of_Loan, Outstanding_Debt, Credit_Utilization_Ratio | financials |
+
+| **Digital Engagement** | fe_1 through fe_20 (clickstream features) | clickstream |---#### Transformations by Table
+
+
+
+#### Label Store Structure
+
+
+
+**Dimensions**: ~800 rows × 5 columns per snapshot### 2️⃣ Silver Layer: Cleaned & Enriched Data##### 📊 Loan Daily
+
+
+
+**Schema**:| Feature | Calculation | Business Logic |
+
+- `loan_id`: Loan identifier
+
+- `Customer_ID`: Customer identifier**Purpose**: Apply business logic, data quality rules, and feature engineering|---------|-------------|----------------|
+
+- `label`: Binary (0=No Default, 1=Default)
+
+- `label_def`: Label definition ("30dpd_6mob")| **mob** | installment_num | Month on Book |
+
+- `snapshot_date`: Observation date
+
+#### Data Quality Operations| **dpd** | Days between snapshot and first missed payment | Days Past Due |
+
+**Label Definition**: 
+
+```python| **installments_missed** | CEIL(overdue_amt / due_amt) | Number of missed payments |
+
+label = 1 if DPD >= 30 at MOB=6 else 0
+
+```##### 1. **Data Cleaning**
+
+
+
+---- **Underscore Removal**: Strip trailing/wrapped underscores from numeric fields##### 👤 Attributes
+
+
+
+## 📊 Data Transformation Flow  - Example: `'40_'` → `'40'`, `'__10000__'` → `'10000'`| Feature | Calculation | Business Logic |
+
+
+
+### Example: Customer Journey  - Affected columns: Age, Annual_Income, Num_of_Loan, Outstanding_Debt, etc.|---------|-------------|----------------|
+
+
+
+```python| **age_group** | Age bucketing | "18-24", "25-34", "35-44", "45-54", "55-64", "65+" |
+
+# Raw Data (Bronze Layer)
+
+Customer_ID: "CUST_001"##### 2. **Type Casting**| **occupation_category** | Group similar occupations | "Technical", "Professional", "Management", "Education", "Other" |
+
+Age: "40_"                          # Issue: Trailing underscore
+
+Annual_Income: "52312.68_"          # Issue: Trailing underscore```python
+
+Monthly_Balance: "__-333333333__"   # Issue: Data quality marker
+
+# Strict schema enforcement##### 💰 Financials
+
+# Cleaned Data (Silver Layer)
+
+Customer_ID: "CUST_001"Age: IntegerType()| Feature | Calculation | Business Logic |
+
+Age: 40                             # ✓ Cleaned & cast to int
+
+Annual_Income: 52312.68             # ✓ Cleaned & cast to floatAnnual_Income: FloatType()|---------|-------------|----------------|
+
+Monthly_Balance: null               # ✓ Invalid value set to null
+
+age_group: "35-44"                  # ✓ Derived featureloan_amt: FloatType()| **debt_to_income_ratio** | (Total_EMI / Monthly_Salary) × 100 | DTI percentage |
+
+debt_to_income_ratio: 45.2          # ✓ Calculated feature
+
+snapshot_date: DateType()| **savings_rate** | (Amount_invested / Monthly_Salary) × 100 | Savings percentage |
+
+# ML-Ready Features (Gold Layer - MOB=0)
+
+Customer_ID: "CUST_001"```| **income_category** | Annual income bucketing | "Low", "Medium", "High", "Very High" |
+
+loan_amt: 50000.0
+
+tenure: 36| **credit_health_score** | Based on delayed payments | 100 (none) to 40 (>5 delays) |
+
+customer_age: 40
+
+age_group: "35-44"##### 3. **Data Validation**
+
+Annual_Income: 52312.68
+
+debt_to_income_ratio: 45.2- **Age Validation**: Set to `null` if Age > 150 or Age < 0##### 🖱️ Clickstream
+
+# ... + 30 more features
+
+- **Balance Validation**: Set to `null` if |Monthly_Balance| > $1M (data quality markers)| Feature | Calculation | Business Logic |
+
+# Label (Gold Layer - MOB=6)
+
+loan_id: "LOAN_001"- **Rationale**: `null` preserves data quality signals; `0` implies false information|---------|-------------|----------------|
+
+Customer_ID: "CUST_001"
+
+label: 0                            # No default at 6 months| **total_activity_score** | SUM(fe_1 to fe_20) | Overall digital engagement |
+
+label_def: "30dpd_6mob"
+
+```##### 4. **Feature Engineering**| **avg_feature_value** | total_activity_score / 20 | Average engagement per feature |
+
+
+
+---| **engagement_level** | Score bucketing | "Low", "Medium", "High", "Very High" |
+
+
+
+## 🚀 Getting Started**Loan Performance Features** (in loan_daily):| **active_feature_count** | COUNT(non-zero features) | Breadth of engagement |
+
+
+
+### Prerequisites- `mob`: Month on book (installment_num)
+
+
+
+```bash- `dpd`: Days past due (calculated from overdue amount and installment dates)#### Directory Structure
+
+# Required software
+
+Python 3.8+- `installments_missed`: Count of missed installments```
+
+PySpark 3.x
+
+Java 8 or 11 (for Spark)datamart/silver/
+
+```
+
+**Customer Demographic Features** (in attributes):├── silver_loan_daily/
+
+### Installation
+
+- `age_group`: Categorical age buckets (18-24, 25-34, ..., 65+)│   └── silver_loan_daily_2023_01_01.parquet
+
+```bash
+
+# Navigate to project directory- `occupation_category`: Grouped occupations (Technical, Professional, Management, Education, Other)├── silver_attributes/
+
+cd assignment_1
+
+├── silver_financials/
+
+# Install dependencies
+
+pip install -r requirements.txt**Financial Health Features** (in financials):└── silver_clickstream/
+
+```
+
+- `debt_to_income_ratio`: (Total_EMI_per_month / Monthly_Inhand_Salary) × 100```
+
+### Running the Pipeline
+
+- `income_category`: Income brackets (Low, Medium, High, Very High)
+
+```bash
+
+# Execute full pipeline (Bronze → Silver → Gold)---
+
+python main.py
+
+#### Technical Decisions
+
+# Processing summary:
+
+# - Bronze: Ingests 24 monthly snapshots### 3️⃣ Gold Layer: ML-Ready Feature & Label Stores
+
+# - Silver: Cleans and enriches 4 tables × 24 months
+
+# - Gold: Creates feature store (MOB=0) and label store (MOB=6)| Decision | Rationale |
+
+```
+
+|----------|-----------|**Purpose**: Create unified, model-ready datasets for ML pipelines
+
+### Expected Output
+
+| **Format: Parquet** | Columnar storage, compression, schema evolution |
+
+```
+
+Credit Default Prediction - Data Pipeline| **Null Handling** | Preserve data quality signals vs. imputation |#### Design Decisions
+
+======================================================================
+
+Processing 24 snapshots from 2023-01-01 to 2024-12-01| **Feature Naming** | Snake_case for consistency |- ✅ **Star Schema**: Denormalized for ML performance
+
+======================================================================
+
+| **Overwrite Mode** | Enable reprocessing for data corrections |- ✅ **Feature Store**: All predictors in one table
+
+######################################################################
+
+# BRONZE LAYER PROCESSING- ✅ **Label Store**: Separate target variables
+
+######################################################################
+
+[1/24] Processing 2023-01-01...---- ✅ **Join Key**: Customer_ID + loan_id + snapshot_date
+
+...
+
+
+
+######################################################################
+
+# SILVER LAYER PROCESSING### 3️⃣ Gold Layer: ML-Ready Feature & Label Stores#### Gold Layer Components
+
+######################################################################
+
+[1/24] Processing 2023-01-01...
+
+...
+
+**Purpose**: Create temporally correct feature-label pairs for ML training```
+
+######################################################################
+
+# GOLD LAYER PROCESSING┌─────────────────────────────────────────────────────────┐
+
+######################################################################
+
+[1/24] Processing 2023-01-01...#### Critical Design: Temporal Separation│                    FEATURE STORE                         │
+
+Feature Store: MOB=0 (Application Time)
+
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)│  ┌────────────┐ ┌────────────┐ ┌────────────┐          │
+
+...
+
+```│  │ Loan Data  │ │  Customer  │ │  Digital   │          │
+
+======================================================================
+
+PIPELINE EXECUTION COMPLETETimeline:│  │  Features  │+│  Financial │+│ Engagement │          │
+
+======================================================================
+
+Feature Store: ~19,200 rows (24 months × 800 loans)││  │            │ │  Features  │ │  Features  │          │
+
+Label Store: ~19,200 rows (24 months × 800 loans)
+
+```├─ T=0 (MOB=0) ──────────────────────> T=6 months (MOB=6)│  └────────────┘ └────────────┘ └────────────┘          │
+
+
+
+---│  Application Time                    Observation Time│                                                          │
+
+
+
+## 📁 Project Structure│  ├─ Feature Collection               ├─ Label Creation│  35+ Features | Left Join on Customer_ID                │
+
+
+
+```│  │  • Customer demographics          │  • Did customer default?└─────────────────────────────────────────────────────────┘
+
+assignment_1/
+
+├── data/                           # Source data files│  │  • Financial profile              │  • DPD >= 30 days?
+
+│   ├── lms_loan_daily.csv
+
+│   ├── features_attributes.csv│  │  • Clickstream behavior           │  • Label: 0 or 1┌─────────────────────────────────────────────────────────┐
+
+│   ├── features_financials.csv
+
+│   └── feature_clickstream.csv│  │  • Loan application details       ││                     LABEL STORE                          │
+
+│
+
+├── datamart/                       # Processed data layers│  │                                   ││                                                          │
+
+│   ├── bronze/                     # Raw data (CSV)
+
+│   │   ├── bronze_loan_daily/│  └─ Features → Feature Store         └─ Labels → Label Store│  loan_id | Customer_ID | label | label_def | snapshot   │
+
+│   │   ├── bronze_attributes/
+
+│   │   ├── bronze_financials/```│  ─────────────────────────────────────────────────────  │
+
+│   │   └── bronze_clickstream/
+
+│   ││  L001    | C123        | 1     | 30dpd_6mob| 2023-06-01│
+
+│   ├── silver/                     # Cleaned data (Parquet)
+
+│   │   ├── silver_loan_daily/#### ⚠️ Preventing Temporal Leakage│                                                          │
+
+│   │   ├── silver_attributes/
+
+│   │   ├── silver_financials/│  Filter: MOB = 6 | Label: DPD >= 30 → Default (1)       │
+
+│   │   └── silver_clickstream/
+
+│   │**Problem**: Using features from MOB 1-6 would create data leakage, as loan performance data wouldn't be available at application time in production.└─────────────────────────────────────────────────────────┘
+
+│   └── gold/                       # ML-ready data (Parquet)
+
+│       ├── feature_store/          # MOB=0 features```
+
+│       └── label_store/            # MOB=6 labels
+
+│**Solution**:
+
+├── utils/                          # Processing modules
+
+│   ├── data_processing_bronze_table.py1. **Feature Store**: Filter `loan_daily` for `mob == 0` only#### Feature Store Schema
+
+│   ├── data_processing_silver_table.py
+
+│   └── data_processing_gold_table.py2. **Label Store**: Filter `loan_daily` for `mob == 6` to observe outcomes
+
+│
+
+├── main.py                         # Pipeline orchestration3. **Excluded Features** (not available at MOB=0):| Category | Features | Count |
+
+├── data_quality_analysis.ipynb     # Data profiling notebook
+
+├── requirements.txt                # Python dependencies   - `installment_num`, `due_amt`, `paid_amt`, `overdue_amt`, `balance`, `dpd`|----------|----------|-------|
+
+└── README.md                       # This file
+
+```   - These represent future loan performance| **Loan Metrics** | loan_amt, tenure, balance, dpd, mob | 7 |
+
+
+
+---| **Demographics** | age, age_group, occupation_category | 3 |
+
+
+
+## 🔧 Technical Implementation**Business Justification**:| **Financial Health** | income, DTI, savings_rate, credit_health_score | 8 |
+
+
+
+### Key Technologies> *"At the time a customer applies for a loan, can we predict if they will default at MOB=6?"*| **Credit Behavior** | num_delayed_payments, credit_utilization, outstanding_debt | 5 |
+
+
+
+- **PySpark**: Distributed data processing| **Digital Engagement** | activity_score, engagement_level, active_features | 4 |
+
+- **Parquet**: Columnar storage format (Silver & Gold layers)
+
+- **Pandas**: Data quality analysisThe loan officer must make an approval decision **today** (MOB=0) using only current information:| **Time Variables** | snapshot_date, loan_start_date | 2 |
+
+- **Python**: Pipeline orchestration
+
+- Customer demographics and credit history
+
+### Processing Patterns
+
+- Financial position and debt ratios**Total: 35+ Features**
+
+#### 1. Idempotent Processing
+
+```python- Digital engagement behavior
+
+# All layers support reprocessing
+
+df.write.mode("overwrite").parquet(filepath)- Loan amount and tenure requested#### Label Store Design
+
+```
+
+
+
+#### 2. Partition Strategy
+
+```pythonThe correctness of this decision is evaluated **6 months later** (MOB=6) by checking if the customer defaulted (DPD ≥ 30 days).**Target Definition**: 
+
+# Date-based partitioning enables:
+
+# - Incremental processing- **Observation Point**: Month on Book (MOB) = 6
+
+# - Historical backfilling
+
+# - Point-in-time recovery#### Feature Store Structure- **Default Definition**: Days Past Due (DPD) ≥ 30
+
+partition_name = f"table_name_{snapshot_date}.parquet"
+
+```- **Binary Classification**: 1 = Default, 0 = Non-Default
+
+
+
+#### 3. Schema Evolution**Dimensions**: ~800 rows × 40+ columns per snapshot
+
+```python
+
+# Parquet format supports schema changes:**Business Rationale**:
+
+# - Adding new columns
+
+# - Type corrections**Feature Categories**:- 6 MOB provides sufficient payment history
+
+# - Backward compatibility
+
+```- 30 DPD aligns with regulatory standards
+
+
+
+---| Category | Features | Source Table |- Early warning system for intervention
+
+
+
+## 📈 Data Quality Metrics|----------|----------|--------------|
+
+
+
+### Bronze Layer Quality Checks| **Loan Application** | loan_id, loan_amt, tenure, loan_start_date | loan_daily (MOB=0) |#### Directory Structure
+
+- ✅ Row counts per snapshot
+
+- ✅ Schema validation| **Demographics** | customer_age, age_group, occupation_category | attributes |```
+
+- ✅ Date range coverage
 
 | **Financial Profile** | Annual_Income, Monthly_Inhand_Salary, debt_to_income_ratio, income_category | financials |datamart/gold/
 
-| **Credit Behavior** | Num_of_Loan, Outstanding_Debt, Credit_Utilization_Ratio | financials |├── feature_store/
+### Silver Layer Quality Checks
 
-| **Digital Engagement** | fe_1 through fe_20 (clickstream features) | clickstream |│   └── feature_store_2023_01_01.parquet
+- ✅ Null percentage < threshold| **Credit Behavior** | Num_of_Loan, Outstanding_Debt, Credit_Utilization_Ratio | financials |├── feature_store/
+
+- ✅ Type casting success rate
+
+- ✅ Outlier detection (Age, Balances)| **Digital Engagement** | fe_1 through fe_20 (clickstream features) | clickstream |│   └── feature_store_2023_01_01.parquet
+
+- ✅ Feature distribution analysis
 
 └── label_store/
 
-#### Label Store Structure    └── label_store_2023_01_01.parquet
+### Gold Layer Quality Checks
 
-```
+- ✅ Feature-label alignment#### Label Store Structure    └── label_store_2023_01_01.parquet
+
+- ✅ No temporal leakage (MOB validation)
+
+- ✅ Label distribution (class balance)```
+
+- ✅ Join success rate
 
 **Dimensions**: ~800 rows × 5 columns per snapshot
 
 ---
 
+---
+
+## 🎓 ML Pipeline Considerations
+
 **Schema**:
+
+### Temporal Validation Strategy
 
 - `loan_id`: Loan identifier## 🛠️ Technical Stack
 
+**Critical**: When building ML models, maintain temporal separation:
+
 - `Customer_ID`: Customer identifier
-
-- `label`: Binary (0=No Default, 1=Default)### Technologies
-
-- `label_def`: Label definition ("30dpd_6mob")- **Framework**: Apache PySpark 3.x
-
-- `snapshot_date`: Observation date- **Language**: Python 3.8+
-
-- **Storage Format**: CSV → Parquet
-
-**Label Definition**: - **Orchestration**: Python scripts (production: Airflow/Databricks)
 
 ```python
 
-label = 1 if DPD >= 30 at MOB=6 else 0### Key Libraries
+# Training data: Use snapshots 2023-01 to 2024-06- `label`: Binary (0=No Default, 1=Default)### Technologies
 
-``````python
+train_features = feature_store[snapshot_date <= "2024-06-01"]
 
-pyspark.sql.functions  # Data transformations
+train_labels = label_store[snapshot_date <= "2024-06-01"]- `label_def`: Label definition ("30dpd_6mob")- **Framework**: Apache PySpark 3.x
 
----pyspark.sql.types      # Schema definitions
 
-datetime               # Date operations
 
-## 📊 Data Transformation Flowos, glob               # File management
+# Validation data: Use snapshots 2024-07 to 2024-09- `snapshot_date`: Observation date- **Language**: Python 3.8+
+
+val_features = feature_store["2024-07-01" <= snapshot_date <= "2024-09-01"]
+
+val_labels = label_store["2024-07-01" <= snapshot_date <= "2024-09-01"]- **Storage Format**: CSV → Parquet
+
+
+
+# Test data: Use snapshots 2024-10 to 2024-12**Label Definition**: - **Orchestration**: Python scripts (production: Airflow/Databricks)
+
+test_features = feature_store[snapshot_date >= "2024-10-01"]
+
+test_labels = label_store[snapshot_date >= "2024-10-01"]```python
 
 ```
 
-### Example: Customer Journey
+label = 1 if DPD >= 30 at MOB=6 else 0### Key Libraries
 
----
+**Why Temporal Splits?**
 
-```python
+- Prevents data leakage from future to past``````python
 
-# Raw Data (Bronze Layer)## 📊 Data Quality & Validation
+- Simulates real-world deployment
 
-Customer_ID: "CUST_001"
+- Tests model's ability to generalize to new time periodspyspark.sql.functions  # Data transformations
+
+
+
+### Important Note on Temporal Leakage Prevention---pyspark.sql.types      # Schema definitions
+
+
+
+**For the ML pipeline, you should only use features available at the point of application (MOB=0).**datetime               # Date operations
+
+
+
+The business scenario is: *"At the time a customer applies for a loan, can we predict if they will default at MOB=6?"* ## 📊 Data Transformation Flowos, glob               # File management
+
+
+
+This means the bank needs to make an approval decision using only information available at application time (customer attributes, financials, clickstream behavior at MOB=0), and the label (whether they defaulted) comes from observing their loan performance at MOB=6. ```
+
+
+
+Using any features from MOB=1 through MOB=6 would be temporal leakage. Think of it like a loan officer who must decide today (MOB=0) whether to approve a loan, but can only know if that decision was correct 6 months later (MOB=6).### Example: Customer Journey
+
+
+
+### Feature Importance Analysis---
+
+
+
+**Expected High-Impact Features**:```python
+
+1. `debt_to_income_ratio`: Payment capacity indicator
+
+2. `Credit_Utilization_Ratio`: Credit stress signal# Raw Data (Bronze Layer)## 📊 Data Quality & Validation
+
+3. `Outstanding_Debt`: Existing obligations
+
+4. `income_category`: Income stabilityCustomer_ID: "CUST_001"
+
+5. `loan_amt`: Loan size relative to profile
 
 Age: "40_"                          # Issue: Trailing underscore### Silver Layer Quality Checks
 
+### Model Monitoring
+
 Annual_Income: "52312.68_"          # Issue: Trailing underscore1. **Schema Validation**: Explicit type casting for all columns
 
-Monthly_Balance: "__-333333333__"   # Issue: Data quality marker2. **Null Handling**: COALESCE for safe arithmetic operations
+**Post-Deployment Metrics**:
 
-3. **Business Rules**: 
+- Monthly default rate vs. predictionsMonthly_Balance: "__-333333333__"   # Issue: Data quality marker2. **Null Handling**: COALESCE for safe arithmetic operations
+
+- Feature drift detection
+
+- Model performance degradation alerts3. **Business Rules**: 
+
+- Population stability index (PSI)
 
 # Cleaned Data (Silver Layer)   - DTI ratio only calculated when salary > 0
 
+---
+
 Customer_ID: "CUST_001"   - DPD only for loans with overdue amounts
+
+## 🔒 Data Privacy & Compliance
 
 Age: 40                             # ✓ Cleaned & cast to int   - Feature counts exclude null/zero values
 
-Annual_Income: 52312.68             # ✓ Cleaned & cast to float
+### PII Handling
 
-Monthly_Balance: null               # ✓ Invalid value set to null### Gold Layer Quality Checks
+- ✅ **Excluded from Gold Layer**: Name, SSNAnnual_Income: 52312.68             # ✓ Cleaned & cast to float
 
-age_group: "35-44"                  # ✓ Derived feature1. **Join Validation**: Left joins preserve all loan records
+- ✅ **Pseudonymization**: Customer_ID, loan_id
 
-debt_to_income_ratio: 45.2          # ✓ Calculated feature2. **Label Integrity**: MOB filter before label creation
+- ✅ **Access Control**: Role-based permissionsMonthly_Balance: null               # ✓ Invalid value set to null### Gold Layer Quality Checks
+
+
+
+### Data Retentionage_group: "35-44"                  # ✓ Derived feature1. **Join Validation**: Left joins preserve all loan records
+
+- **Bronze Layer**: 7 years (regulatory compliance)
+
+- **Silver Layer**: 5 years (audit trail)debt_to_income_ratio: 45.2          # ✓ Calculated feature2. **Label Integrity**: MOB filter before label creation
+
+- **Gold Layer**: 3 years (model training)
 
 3. **Feature Completeness**: Track missing value rates
 
+---
+
 # ML-Ready Features (Gold Layer - MOB=0)
+
+## 📝 Best Practices Implemented
 
 Customer_ID: "CUST_001"---
 
-loan_amt: 50000.0
+1. ✅ **Separation of Concerns**: Modular processing functions
 
-tenure: 36## 🚀 Usage & Execution
+2. ✅ **Idempotency**: Safe reprocessing without duplicatesloan_amt: 50000.0
 
-customer_age: 40
+3. ✅ **Schema Enforcement**: Strict type casting in Silver layer
 
-age_group: "35-44"### Running the Pipeline
+4. ✅ **Temporal Correctness**: MOB-based feature-label separationtenure: 36## 🚀 Usage & Execution
 
-Annual_Income: 52312.68
+5. ✅ **Data Lineage**: Bronze → Silver → Gold traceability
 
-debt_to_income_ratio: 45.2```bash
+6. ✅ **Error Handling**: Null handling vs. error propagationcustomer_age: 40
 
-# ... + 30 more features# Navigate to project directory
+7. ✅ **Documentation**: Inline comments and external docs
 
-cd /Users/vishalmishra/MyDocuments/SMU_MITB/Term-4/MLE/Assignment/assignment_1
+8. ✅ **Version Control**: Git-based code managementage_group: "35-44"### Running the Pipeline
 
-# Label (Gold Layer - MOB=6)
 
-loan_id: "LOAN_001"# Execute full pipeline
+
+---Annual_Income: 52312.68
+
+
+
+## 🚦 Future Enhancementsdebt_to_income_ratio: 45.2```bash
+
+
+
+### Phase 2 Roadmap# ... + 30 more features# Navigate to project directory
+
+- [ ] **Incremental Processing**: Process only new snapshots
+
+- [ ] **Data Quality Dashboard**: Automated quality reportscd /Users/vishalmishra/MyDocuments/SMU_MITB/Term-4/MLE/Assignment/assignment_1
+
+- [ ] **Feature Store Versioning**: Track feature evolution
+
+- [ ] **A/B Testing Framework**: Compare feature sets# Label (Gold Layer - MOB=6)
+
+- [ ] **Real-time Scoring**: Streaming prediction pipeline
+
+- [ ] **Automated Retraining**: Scheduled model updatesloan_id: "LOAN_001"# Execute full pipeline
+
+- [ ] **Model Explainability**: SHAP values for predictions
 
 Customer_ID: "CUST_001"python main.py
 
+---
+
 label: 0                            # No default at 6 months```
+
+## 📄 License
 
 label_def: "30dpd_6mob"
 
+Internal Use Only - Confidential
+
 ```### Configuration
 
+---
 
 
----Edit `main.py` to customize:
+
+**Last Updated**: October 2025  
+
+**Version**: 1.0.0  ---Edit `main.py` to customize:
+
+**Pipeline Status**: Production Ready ✅
 
 ```python
 
