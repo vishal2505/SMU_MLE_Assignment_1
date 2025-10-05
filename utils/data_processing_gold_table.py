@@ -134,7 +134,6 @@ def process_feature_store(snapshot_date_str, silver_directory, gold_directory, s
     # Select relevant columns from clickstream
     df_clickstream_features = df_clickstream.select(
         "Customer_ID",
-        "snapshot_date",
         "fe_1",
         "fe_2",
         "fe_3",
