@@ -1,6 +1,15 @@
 import os
-from datetime import datetime
+import glob
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import random
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+import pprint
+import pyspark
 import pyspark.sql.functions as F
+import argparse
 
 from pyspark.sql.functions import col
 from pyspark.sql.types import StringType, IntegerType, FloatType, DateType
@@ -74,20 +83,22 @@ def process_feature_store(snapshot_date_str, silver_directory, gold_directory, s
     df_clickstream = spark.read.parquet(filepath)
     print(f'Loaded clickstream from: {filepath}, row count: {df_clickstream.count()}')
     
-    # Select relevant columns from loan daily (MOB=0 only - application time)
+    # Select relevant columns from loan daily
+    # Exclude features that represent future loan performance
+    # These features would cause temporal leakage as they're not available at MOB=0:
+    # - installment_num: Payment sequence (future information)
+    # - due_amt: Amount due at future installments
+    # - paid_amt: Payment behavior (future)
+    # - overdue_amt: Future delinquency information
+    # - balance: Account balance changes over time
+    # - mob: Month indicator (filtered to 0, not needed as feature)
+    # - dpd: Days past due (this is what we're predicting!)
     df_loan_features = df_loan.select(
         "loan_id",
         "Customer_ID",
         "loan_start_date",
         "tenure",
-        "installment_num",
         "loan_amt",
-        "due_amt",
-        "paid_amt",
-        "overdue_amt",
-        "balance",
-        "mob",
-        "dpd",
         "snapshot_date"
     )
     
@@ -120,9 +131,10 @@ def process_feature_store(snapshot_date_str, silver_directory, gold_directory, s
         "income_category"
     )
     
-    # Select relevant columns from clickstream (exclude snapshot_date to avoid duplicate)
+    # Select relevant columns from clickstream
     df_clickstream_features = df_clickstream.select(
         "Customer_ID",
+        "snapshot_date",
         "fe_1",
         "fe_2",
         "fe_3",
@@ -142,7 +154,7 @@ def process_feature_store(snapshot_date_str, silver_directory, gold_directory, s
         "fe_17",
         "fe_18",
         "fe_19",
-        "fe_20"
+        "fe_20",
     )
     
     # Join all tables on Customer_ID
