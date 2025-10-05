@@ -286,10 +286,10 @@ datamart/gold/
 
 ### Technologies
 - **Framework**: Apache PySpark 3.x (Distributed data processing)
-- **Language**: Python 3.8+
+- **Language**: Python 3.10+
 - **Storage Format**: CSV (Bronze) → Parquet (Silver, Gold)
 - **Compression**: Snappy (Parquet default)
-- **Orchestration**: Python scripts (Production-ready for Airflow/Databricks)
+- **Orchestration**: Python scripts
 - **Version Control**: Git
 
 ### Key Capabilities
