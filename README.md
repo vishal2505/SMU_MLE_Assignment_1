@@ -157,34 +157,28 @@ datamart/bronze/
 
 #### Transformations by Table
 
-##### 📊 Loan Daily
+##### Loan Daily
 | Feature | Calculation | Business Logic |
 |---------|-------------|----------------|
 | **mob** | installment_num | Month on Book |
 | **dpd** | Days between snapshot and first missed payment | Days Past Due |
 | **installments_missed** | CEIL(overdue_amt / due_amt) | Number of missed payments |
 
-##### 👤 Attributes
+##### Attributes
 | Feature | Calculation | Business Logic |
 |---------|-------------|----------------|
 | **age_group** | Age bucketing | "18-24", "25-34", "35-44", "45-54", "55-64", "65+" |
 | **occupation_category** | Group similar occupations | "Technical", "Professional", "Management", "Education", "Other" |
 
-##### 💰 Financials
+##### Financials
 | Feature | Calculation | Business Logic |
 |---------|-------------|----------------|
 | **debt_to_income_ratio** | (Total_EMI / Monthly_Salary) × 100 | DTI percentage |
-| **savings_rate** | (Amount_invested / Monthly_Salary) × 100 | Savings percentage |
 | **income_category** | Annual income bucketing | "Low", "Medium", "High", "Very High" |
-| **credit_health_score** | Based on delayed payments | 100 (none) to 40 (>5 delays) |
 
-##### 🖱️ Clickstream
-| Feature | Calculation | Business Logic |
-|---------|-------------|----------------|
-| **total_activity_score** | SUM(fe_1 to fe_20) | Overall digital engagement |
-| **avg_feature_value** | total_activity_score / 20 | Average engagement per feature |
-| **engagement_level** | Score bucketing | "Low", "Medium", "High", "Very High" |
-| **active_feature_count** | COUNT(non-zero features) | Breadth of engagement |
+##### Clickstream
+
+- NO additional features
 
 #### Directory Structure
 ```
@@ -203,7 +197,6 @@ datamart/silver/
 **Purpose**: Create unified, model-ready datasets for ML pipelines with strict temporal correctness
 
 #### Design Decisions
-- ✅ **Star Schema**: Denormalized for ML performance
 - ✅ **Feature Store**: All predictors available at MOB=0
 - ✅ **Label Store**: Separate target variables observed at MOB=6
 - ✅ **Temporal Filtering**: MOB=0 for features, MOB=6 for labels
