@@ -148,7 +148,6 @@ datamart/bronze/
 | **Invalid Age** | `Age > 150 OR Age < 0` | Set to `NULL` (not 0) | Preserve data quality signal for imputation |
 | **Extreme Balances** | `abs(balance) > 1,000,000` | Set to `NULL` (not 0) | Flag extreme outliers for investigation |
 | **Missing Values** | `IS NULL` check | Preserve as `NULL` | Enable downstream imputation strategies |
-| **Negative Amounts** | Loan amounts, incomes < 0 | Set to `NULL` | Invalid for non-debt fields |
 
 **Why NULL instead of 0?**
 - ✅ `NULL` = "Unknown/Invalid" → Explicit data quality signal for ML pipeline
