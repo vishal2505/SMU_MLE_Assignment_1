@@ -34,7 +34,7 @@ ENV/
 Thumbs.db
 
 # Data files (uncomment if data files are too large)
-# data/*.csv
+data/*.csv
 datamart/bronze/
 datamart/silver/
 datamart/gold/
