@@ -1,0 +1,2258 @@
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/10/06 11:16:56 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 1:>                                                                                                                                                                                                   (0 + 3) / 3]                                                                                                                                                                                                                         
+======================================================================
+Credit Default Prediction - Data Pipeline
+======================================================================
+Processing 24 snapshots from 2023-01-01 to 2024-12-01
+======================================================================
+
+
+######################################################################
+# BRONZE LAYER PROCESSING
+######################################################################
+
+[1/24] Processing 2023-01-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-01-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-01-01row count: 530
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_01_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-01-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_01_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-01-01row count: 530
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_01_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-01-01row count: 530
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_01_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-01-01
+======================================================================
+
+[2/24] Processing 2023-02-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-02-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-02-01row count: 1031
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_02_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-02-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_02_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-02-01row count: 501
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_02_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-02-01row count: 501
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_02_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-02-01
+======================================================================
+
+[3/24] Processing 2023-03-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-03-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-03-01row count: 1537
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_03_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-03-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_03_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-03-01row count: 506
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_03_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-03-01row count: 506
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_03_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-03-01
+======================================================================
+
+[4/24] Processing 2023-04-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-04-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-04-01row count: 2047
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_04_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-04-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_04_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-04-01row count: 510
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_04_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-04-01row count: 510
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_04_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-04-01
+======================================================================
+
+[5/24] Processing 2023-05-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-05-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-05-01row count: 2568
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_05_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-05-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_05_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-05-01row count: 521
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_05_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-05-01row count: 521
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_05_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-05-01
+======================================================================
+
+[6/24] Processing 2023-06-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-06-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-06-01row count: 3085
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_06_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-06-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_06_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-06-01row count: 517
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_06_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-06-01row count: 517
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_06_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-06-01
+======================================================================
+
+[7/24] Processing 2023-07-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-07-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-07-01row count: 3556
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_07_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-07-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_07_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-07-01row count: 471
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_07_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-07-01row count: 471
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_07_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-07-01
+======================================================================
+
+[8/24] Processing 2023-08-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-08-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-08-01row count: 4037
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_08_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-08-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_08_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-08-01row count: 481
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_08_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-08-01row count: 481
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_08_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-08-01
+======================================================================
+
+[9/24] Processing 2023-09-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-09-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-09-01row count: 4491
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_09_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-09-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_09_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-09-01row count: 454
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_09_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-09-01row count: 454
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_09_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-09-01
+======================================================================
+
+[10/24] Processing 2023-10-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-10-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-10-01row count: 4978
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_10_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-10-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_10_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-10-01row count: 487
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_10_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-10-01row count: 487
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_10_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-10-01
+======================================================================
+
+[11/24] Processing 2023-11-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-11-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-11-01row count: 5469
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_11_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-11-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_11_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-11-01row count: 491
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_11_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-11-01row count: 491
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_11_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-11-01
+======================================================================
+
+[12/24] Processing 2023-12-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2023-12-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2023-12-01row count: 5428
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_12_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2023-12-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_12_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2023-12-01row count: 489
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2023_12_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2023-12-01row count: 489
+saved to: datamart/bronze/bronze_financials/bronze_financials_2023_12_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2023-12-01
+======================================================================
+
+[13/24] Processing 2024-01-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-01-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-01-01row count: 5412
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_01_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-01-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_01_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-01-01row count: 485
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_01_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-01-01row count: 485
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_01_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-01-01
+======================================================================
+
+[14/24] Processing 2024-02-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-02-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-02-01row count: 5424
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_02_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-02-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_02_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-02-01row count: 518
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_02_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-02-01row count: 518
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_02_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-02-01
+======================================================================
+
+[15/24] Processing 2024-03-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-03-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-03-01row count: 5425
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_03_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-03-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_03_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-03-01row count: 511
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_03_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-03-01row count: 511
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_03_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-03-01
+======================================================================
+[Stage 463:>                                                                                                                                                                                                 (0 + 5) / 5]                                                                                                                                                                                                                         [Stage 467:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 467:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 487:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 487:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 491:>                                                                                                                                                                                                 (0 + 5) / 5]                                                                                                                                                                                                                         [Stage 505:>                                                                                                                                                                                                 (0 + 3) / 3]                                                                                                                                                                                                                         [Stage 509:================================================================>                                                                                                                                 (1 + 2) / 3]                                                                                                                                                                                                                         [Stage 511:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 511:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 512:>                                                                                                                                                                                                 (0 + 5) / 5]                                                                                                                                                                                                                         [Stage 515:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 515:=============================================================================>                                                                                                                    (2 + 3) / 5]                                                                                                                                                                                                                         [Stage 529:>                                                                                                                                                                                                 (0 + 3) / 3]                                                                                                                                                                                                                         [Stage 530:>                                                                                                                                                                                                 (0 + 3) / 3]                                                                                                                                                                                                                         [Stage 533:>                                                                                                                                                                                                 (0 + 3) / 3][Stage 533:================================================================>                                                                                                                                 (1 + 2) / 3]                                                                                                                                                                                                                         [Stage 535:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 535:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 536:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 536:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 539:>                                                                                                                                                                                                 (0 + 5) / 5]                                                                                                                                                                                                                         [Stage 547:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 548:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         
+[16/24] Processing 2024-04-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-04-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-04-01row count: 5417
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_04_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-04-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_04_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-04-01row count: 513
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_04_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-04-01row count: 513
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_04_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-04-01
+======================================================================
+
+[17/24] Processing 2024-05-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-05-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-05-01row count: 5391
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_05_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-05-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_05_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-05-01row count: 491
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_05_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-05-01row count: 491
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_05_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-05-01
+======================================================================
+
+[18/24] Processing 2024-06-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-06-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-06-01row count: 5418
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_06_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-06-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_06_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-06-01row count: 498
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_06_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-06-01row count: 498
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_06_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-06-01
+======================================================================
+
+[19/24] Processing 2024-07-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-07-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-07-01row count: 5442
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_07_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-07-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_07_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-07-01row count: 505
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_07_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-07-01row count: 505
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_07_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-07-01
+======================================================================
+
+[20/24] Processing 2024-08-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-08-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-08-01row count: 5531
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_08_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-08-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_08_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-08-01row count: 543
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_08_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-08-01row count: 543
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_08_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-08-01
+======================================================================
+
+[21/24] Processing 2024-09-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-09-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-09-01row count: 5537
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_09_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-09-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_09_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-09-01row count: 493
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_09_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-09-01row count: 493
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_09_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-09-01
+======================================================================
+
+[22/24] Processing 2024-10-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-10-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-10-01row count: 5502
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_10_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-10-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_10_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-10-01row count: 456
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_10_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-10-01row count: 456
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_10_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-10-01
+======================================================================
+
+[23/24] Processing 2024-11-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-11-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-11-01row count: 5501
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_11_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-11-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_11_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-11-01row count: 488
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_11_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-11-01row count:[Stage 551:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 553:>                                                                                                                                                                                                 (0 + 3) / 3]                                                                                                                                                                                                                         [Stage 554:>                                                                                                                                                                                                 (0 + 3) / 3][Stage 554:=================================================================================================================================>                                                                (2 + 1) / 3]                                                                                                                                                                                                                         [Stage 557:>                                                                                                                                                                                                 (0 + 3) / 3]                                                                                                                                                                                                                         [Stage 559:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 559:======================================>                                                                                                                                                           (1 + 4) / 5][Stage 559:=============================================================================>                                                                                                                    (2 + 3) / 5]                                                                                                                                                                                                                         [Stage 560:>                                                                                                                                                                                                 (0 + 5) / 5][Stage 560:======================================>                                                                                                                                                           (1 + 4) / 5]                                                                                                                                                                                                                         [Stage 563:>                                                                                                                                                                                                 (0 + 5) / 5]                                                                                                                                                                                                                         [Stage 565:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 566:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 569:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 575:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 581:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 587:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 593:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 599:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                          488
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_11_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-11-01
+======================================================================
+
+[24/24] Processing 2024-12-01...
+
+======================================================================
+Processing Bronze Tables for snapshot date: 2024-12-01
+======================================================================
+
+1. Processing Loan Daily Table...
+2024-12-01row count: 5531
+saved to: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_12_01.csv
+Loan Daily completed
+
+2. Processing Clickstream Table...
+2024-12-01row count: 8974
+saved to: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_12_01.csv
+Clickstream completed
+
+3. Processing Attributes Table...
+2024-12-01row count: 515
+saved to: datamart/bronze/bronze_attributes/bronze_attributes_2024_12_01.csv
+Attributes completed
+
+4. Processing Financials Table...
+2024-12-01row count: 515
+saved to: datamart/bronze/bronze_financials/bronze_financials_2024_12_01.csv
+Financials completed
+
+======================================================================
+Bronze Tables Processing Complete for 2024-12-01
+======================================================================
+
+
+######################################################################
+# SILVER LAYER PROCESSING
+######################################################################
+
+[1/24] Processing 2023-01-01...
+
+======================================================================
+Processing Silver Tables for 2023-01-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_01_01.csv, row count: 530
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_01_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_01_01.csv, row count: 530
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_01_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_01_01.csv, row count: 530
+Saved to: datamart/silver/silver_financials/silver_financials_2023_01_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_01_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_01_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-01-01
+======================================================================
+
+[2/24] Processing 2023-02-01...
+
+======================================================================
+Processing Silver Tables for 2023-02-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_02_01.csv, row count: 1031
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_02_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_02_01.csv, row count: 501
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_02_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_02_01.csv, row count: 501
+Saved to: datamart/silver/silver_financials/silver_financials_2023_02_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_02_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_02_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-02-01
+======================================================================
+
+[3/24] Processing 2023-03-01...
+
+======================================================================
+Processing Silver Tables for 2023-03-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_03_01.csv, row count: 1537
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_03_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_03_01.csv, row count: 506
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_03_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_03_01.csv, row count: 506
+Saved to: datamart/silver/silver_financials/silver_financials_2023_03_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_03_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_03_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-03-01
+======================================================================
+
+[4/24] Processing 2023-04-01...
+
+======================================================================
+Processing Silver Tables for 2023-04-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_04_01.csv, row count: 2047
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_04_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_04_01.csv, row count: 510
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_04_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_04_01.csv, row count: 510
+Saved to: datamart/silver/silver_financials/silver_financials_2023_04_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_04_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_04_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-04-01
+======================================================================
+
+[5/24] Processing 2023-05-01...
+
+======================================================================
+Processing Silver Tables for 2023-05-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_05_01.csv, row count: 2568
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_05_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_05_01.csv, row count: 521
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_05_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_05_01.csv, row count: 521
+Saved to: datamart/silver/silver_financials/silver_financials_2023_05_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_05_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_05_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-05-01
+======================================================================
+
+[6/24] Processing 2023-06-01...
+
+======================================================================
+Processing Silver Tables for 2023-06-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_06_01.csv, row count: 3085
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_06_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_06_01.csv, row count: 517
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_06_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_06_01.csv, row count: 517
+Saved to: datamart/silver/silver_financials/silver_financials_2023_06_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_06_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_06_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-06-01
+======================================================================
+
+[7/24] Processing 2023-07-01...
+
+======================================================================
+Processing Silver Tables for 2023-07-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_07_01.csv, row count: 3556
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_07_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_07_01.csv, row count: 471
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_07_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_07_01.csv, row count: 471
+Saved to: datamart/silver/silver_financials/silver_financials_2023_07_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_07_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_07_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-07-01
+======================================================================
+
+[8/24] Processing 2023-08-01...
+
+======================================================================
+Processing Silver Tables for 2023-08-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_08_01.csv, row count: 4037
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_08_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_08_01.csv, row count: 481
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_08_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_08_01.csv, row count: 481
+Saved to: datamart/silver/silver_financials/silver_financials_2023_08_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_08_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_08_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-08-01
+======================================================================
+
+[9/24] Processing 2023-09-01...
+
+======================================================================
+Processing Silver Tables for 2023-09-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_09_01.csv, row count: 4491
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_09_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_09_01.csv, row count: 454
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_09_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_09_01.csv, row count: 454
+Saved to: datamart/silver/silver_financials/silver_financials_2023_09_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_09_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_09_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-09-01
+======================================================================
+
+[10/24] Processing 2023-10-01...
+
+======================================================================
+Processing Silver Tables for 2023-10-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_10_01.csv, row count: 4978
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_10_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_10_01.csv, row count: 487
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_10_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_10_01.csv, row count: 487
+Saved to: datamart/silver/silver_financials/silver_financials_2023_10_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_10_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_10_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-10-01
+======================================================================
+
+[11/24] Processing 2023-11-01...
+
+======================================================================
+Processing Silver Tables for 2023-11-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_11_01.csv, row count: 5469
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_11_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_11_01.csv, row count: 491
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_11_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_11_01.csv, row count: 491
+Saved to: datamart/silver/silver_financials/silver_financials_2023_11_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_11_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_11_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-11-01
+======================================================================
+
+[12/24] Processing 2023-12-01...[Stage 911:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 917:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 935:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 959:>                                                                                                                                                                                                 (0 + 1) / 1]                                                                                                                                                                                                                         
+
+======================================================================
+Processing Silver Tables for 2023-12-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2023_12_01.csv, row count: 5428
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2023_12_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2023_12_01.csv, row count: 489
+Saved to: datamart/silver/silver_attributes/silver_attributes_2023_12_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2023_12_01.csv, row count: 489
+Saved to: datamart/silver/silver_financials/silver_financials_2023_12_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2023_12_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2023_12_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2023-12-01
+======================================================================
+
+[13/24] Processing 2024-01-01...
+
+======================================================================
+Processing Silver Tables for 2024-01-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_01_01.csv, row count: 5412
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_01_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_01_01.csv, row count: 485
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_01_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_01_01.csv, row count: 485
+Saved to: datamart/silver/silver_financials/silver_financials_2024_01_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_01_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_01_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-01-01
+======================================================================
+
+[14/24] Processing 2024-02-01...
+
+======================================================================
+Processing Silver Tables for 2024-02-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_02_01.csv, row count: 5424
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_02_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_02_01.csv, row count: 518
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_02_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_02_01.csv, row count: 518
+Saved to: datamart/silver/silver_financials/silver_financials_2024_02_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_02_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_02_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-02-01
+======================================================================
+
+[15/24] Processing 2024-03-01...
+
+======================================================================
+Processing Silver Tables for 2024-03-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_03_01.csv, row count: 5425
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_03_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_03_01.csv, row count: 511
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_03_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_03_01.csv, row count: 511
+Saved to: datamart/silver/silver_financials/silver_financials_2024_03_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_03_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_03_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-03-01
+======================================================================
+
+[16/24] Processing 2024-04-01...
+
+======================================================================
+Processing Silver Tables for 2024-04-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_04_01.csv, row count: 5417
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_04_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_04_01.csv, row count: 513
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_04_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_04_01.csv, row count: 513
+Saved to: datamart/silver/silver_financials/silver_financials_2024_04_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_04_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_04_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-04-01
+======================================================================
+
+[17/24] Processing 2024-05-01...
+
+======================================================================
+Processing Silver Tables for 2024-05-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_05_01.csv, row count: 5391
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_05_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_05_01.csv, row count: 491
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_05_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_05_01.csv, row count: 491
+Saved to: datamart/silver/silver_financials/silver_financials_2024_05_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_05_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_05_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-05-01
+======================================================================
+
+[18/24] Processing 2024-06-01...
+
+======================================================================
+Processing Silver Tables for 2024-06-01[Stage 1007:>                                                                                                                                                                                                (0 + 1) / 1]                                                                                                                                                                                                                         [Stage 1031:>                                                                                                                                                                                                (0 + 1) / 1]                                                                                                                                                                                                                         
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_06_01.csv, row count: 5418
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_06_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_06_01.csv, row count: 498
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_06_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_06_01.csv, row count: 498
+Saved to: datamart/silver/silver_financials/silver_financials_2024_06_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_06_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_06_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-06-01
+======================================================================
+
+[19/24] Processing 2024-07-01...
+
+======================================================================
+Processing Silver Tables for 2024-07-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_07_01.csv, row count: 5442
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_07_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_07_01.csv, row count: 505
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_07_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_07_01.csv, row count: 505
+Saved to: datamart/silver/silver_financials/silver_financials_2024_07_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_07_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_07_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-07-01
+======================================================================
+
+[20/24] Processing 2024-08-01...
+
+======================================================================
+Processing Silver Tables for 2024-08-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_08_01.csv, row count: 5531
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_08_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_08_01.csv, row count: 543
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_08_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_08_01.csv, row count: 543
+Saved to: datamart/silver/silver_financials/silver_financials_2024_08_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_08_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_08_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-08-01
+======================================================================
+
+[21/24] Processing 2024-09-01...
+
+======================================================================
+Processing Silver Tables for 2024-09-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_09_01.csv, row count: 5537
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_09_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_09_01.csv, row count: 493
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_09_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_09_01.csv, row count: 493
+Saved to: datamart/silver/silver_financials/silver_financials_2024_09_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_09_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_09_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-09-01
+======================================================================
+
+[22/24] Processing 2024-10-01...
+
+======================================================================
+Processing Silver Tables for 2024-10-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_10_01.csv, row count: 5502
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_10_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_10_01.csv, row count: 456
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_10_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_10_01.csv, row count: 456
+Saved to: datamart/silver/silver_financials/silver_financials_2024_10_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_10_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_10_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-10-01
+======================================================================
+
+[23/24] Processing 2024-11-01...
+
+======================================================================
+Processing Silver Tables for 2024-11-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_11_01.csv, row count: 5501
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_11_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_11_01.csv, row count: 488
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_11_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_11_01.csv, row count: 488
+Saved to: datamart/silver/silver_financials/silver_financials_2024_11_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_11_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_11_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-11-01
+======================================================================
+
+[24/24] Processing 2024-12-01...
+
+======================================================================
+Processing Silver Tables for 2024-12-01
+======================================================================
+
+1. Processing Loan Daily Table...
+Loaded from: datamart/bronze/bronze_loan_daily/bronze_loan_daily_2024_12_01.csv, row count: 5531
+Saved to: datamart/silver/silver_loan_daily/silver_loan_daily_2024_12_01.parquet
+Loan Daily completed
+
+2. Processing Attributes Table...
+Loaded from: datamart/bronze/bronze_attributes/bronze_attributes_2024_12_01.csv, row count: 515
+Saved to: datamart/silver/silver_attributes/silver_attributes_2024_12_01.parquet
+Attributes completed
+
+3. Processing Financials Table...
+Loaded from: datamart/bronze/bronze_financials/bronze_financials_2024_12_01.csv, row count: 515
+Saved to: datamart/silver/silver_financials/silver_financials_2024_12_01.parquet
+Financials completed
+
+4. Processing Clickstream Table...
+Loaded from: datamart/bronze/bronze_clickstream/bronze_clickstream_2024_12_01.csv, row count: 8974
+Saved to: datamart/silver/silver_clickstream/silver_clickstream_2024_12_01.parquet
+Clickstream completed
+
+======================================================================
+Silver Tables Processing Complete for 2024-12-01
+======================================================================
+
+
+######################################################################
+# GOLD LAYER PROCESSING
+######################################################################
+
+[1/24] Processing 2023-01-01...
+
+======================================================================
+Processing Gold Layer for 2023-01-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_01_01.parquet, row count: 530
+Filtered to MOB=0 (application time): 530 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_01_01.parquet, row count: 530
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_01_01.parquet, row count: 530
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_01_01.parquet, row count: 8974
+Feature store created with 530 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_01_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_01_01.parquet, row count: 530
+Saved to: datamart/gold/label_store/label_store_2023_01_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-01-01
+Feature Store: 530 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[2/24] Processing 2023-02-01...
+
+======================================================================
+Processing Gold Layer for 2023-02-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_02_01.parquet, row count: 1031
+Filtered to MOB=0 (application time): 501 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_02_01.parquet, row count: 501
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_02_01.parquet, row count: 501
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_02_01.parquet, row count: 8974
+Feature store created with 501 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_02_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_02_01.parquet, row count: 1031
+Saved to: datamart/gold/label_store/label_store_2023_02_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-02-01
+Feature Store: 501 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[3/24] Processing 2023-03-01...
+
+======================================================================
+Processing Gold Layer for 2023-03-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_03_01.parquet, row count: 1537
+Filtered to MOB=0 (application time): 506 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_03_01.parquet, row count: 506
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_03_01.parquet, row count: 506
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_03_01.parquet, row count: 8974
+Feature store created with 506 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_03_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_03_01.parquet, row count: 1537
+Saved to: datamart/gold/label_store/label_store_2023_03_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-03-01
+Feature Store: 506 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[4/24] Processing 2023-04-01...
+
+======================================================================
+Processing Gold Layer for 2023-04-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_04_01.parquet, row count: 2047
+Filtered to MOB=0 (application time): 510 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_04_01.parquet, row count: 510
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_04_01.parquet, row count: 510
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_04_01.parquet, row count: 8974
+Feature store created with 510 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_04_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_04_01.parquet, row count: 2047
+Saved to: datamart/gold/label_store/label_store_2023_04_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-04-01
+Feature Store: 510 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[5/24] Processing 2023-05-01...
+
+======================================================================
+Processing Gold Layer for 2023-05-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_05_01.parquet, row count: 2568
+Filtered to MOB=0 (application time): 521 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_05_01.parquet, row count: 521
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_05_01.parquet, row count: 521
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_05_01.parquet, row count: 8974
+Feature store created with 521 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_05_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_05_01.parquet, row count: 2568
+Saved to: datamart/gold/label_store/label_store_2023_05_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-05-01
+Feature Store: 521 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[6/24] Processing 2023-06-01...
+
+======================================================================
+Processing Gold Layer for 2023-06-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_06_01.parquet, row count: 3085
+Filtered to MOB=0 (application time): 517 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_06_01.parquet, row count: 517
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_06_01.parquet, row count: 517
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_06_01.parquet, row count: 8974
+Feature store created with 517 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_06_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_06_01.parquet, row count: 3085
+Saved to: datamart/gold/label_store/label_store_2023_06_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-06-01
+Feature Store: 517 rows, 45 columns
+Label Store: 0 rows, 5 columns
+======================================================================
+
+[7/24] Processing 2023-07-01...
+
+======================================================================
+Processing Gold Layer for 2023-07-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_07_01.parquet, row count: 3556
+Filtered to MOB=0 (application time): 471 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_07_01.parquet, row count: 471
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_07_01.parquet, row count: 471
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_07_01.parquet, row count: 8974
+Feature store created with 471 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_07_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_07_01.parquet, row count: 3556
+Saved to: datamart/gold/label_store/label_store_2023_07_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-07-01
+Feature Store: 471 rows, 45 columns
+Label Store: 530 rows, 5 columns
+======================================================================
+
+[8/24] Processing 2023-08-01...
+
+======================================================================
+Processing Gold Layer for 2023-08-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_08_01.parquet, row count: 4037
+Filtered to MOB=0 (application time): 481 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_08_01.parquet, row count: 481
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_08_01.parquet, row count: 481
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_08_01.parquet, row count: 8974
+Feature store created with 481 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_08_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_08_01.parquet, row count: 4037
+Saved to: datamart/gold/label_store/label_store_2023_08_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-08-01
+Feature Store: 481 rows, 45 columns
+Label Store: 501 rows, 5 columns
+======================================================================
+
+[9/24] Processing 2023-09-01...
+
+======================================================================
+Processing Gold Layer for 2023-09-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_09_01.parquet, row count: 4491
+Filtered to MOB=0 (application time): 454 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_09_01.parquet, row count: 454
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_09_01.parquet, row count: 454
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_09_01.parquet, row count: 8974
+Feature store created with 454 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_09_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_09_01.parquet, row count: 4491
+Saved to: datamart/gold/label_store/label_store_2023_09_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-09-01
+Feature Store: 454 rows, 45 columns
+Label Store: 506 rows, 5 columns
+======================================================================
+
+[10/24] Processing 2023-10-01...
+
+======================================================================
+Processing Gold Layer for 2023-10-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_10_01.parquet, row count: 4978
+Filtered to MOB=0 (application time): 487 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_10_01.parquet, row count: 487
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_10_01.parquet, row count: 487
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_10_01.parquet, row count: 8974
+Feature store created with 487 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_10_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_10_01.parquet, row count: 4978
+Saved to: datamart/gold/label_store/label_store_2023_10_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-10-01
+Feature Store: 487 rows, 45 columns
+Label Store: 510 rows, 5 columns
+======================================================================
+
+[11/24] Processing 2023-11-01...
+
+======================================================================
+Processing Gold Layer for 2023-11-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_11_01.parquet, row count: 5469
+Filtered to MOB=0 (application time): 491 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_11_01.parquet, row count: 491
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_11_01.parquet, row count: 491
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_11_01.parquet, row count: 8974
+Feature store created with 491 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_11_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_11_01.parquet, row count: 5469
+Saved to: datamart/gold/label_store/label_store_2023_11_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-11-01
+Feature Store: 491 rows, 45 columns
+Label Store: 521 rows, 5 columns
+======================================================================
+
+[12/24] Processing 2023-12-01...
+
+======================================================================
+Processing Gold Layer for 2023-12-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_12_01.parquet, row count: 5428
+Filtered to MOB=0 (application time): 489 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2023_12_01.parquet, row count: 489
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2023_12_01.parquet, row count: 489
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2023_12_01.parquet, row count: 8974
+Feature store created with 489 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2023_12_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2023_12_01.parquet, row count: 5428
+Saved to: datamart/gold/label_store/label_store_2023_12_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2023-12-01
+Feature Store: 489 rows, 45 columns
+Label Store: 517 rows, 5 columns
+======================================================================
+
+[13/24] Processing 2024-01-01...
+
+======================================================================
+Processing Gold Layer for 2024-01-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_01_01.parquet, row count: 5412
+Filtered to MOB=0 (application time): 485 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_01_01.parquet, row count: 485
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_01_01.parquet, row count: 485
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_01_01.parquet, row count: 8974
+Feature store created with 485 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_01_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_01_01.parquet, row count: 5412
+Saved to: datamart/gold/label_store/label_store_2024_01_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-01-01
+Feature Store: 485 rows, 45 columns
+Label Store: 471 rows, 5 columns
+======================================================================
+
+[14/24] Processing 2024-02-01...
+
+======================================================================
+Processing Gold Layer for 2024-02-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_02_01.parquet, row count: 5424
+Filtered to MOB=0 (application time): 518 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_02_01.parquet, row count: 518
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_02_01.parquet, row count: 518
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_02_01.parquet, row count: 8974
+Feature store created with 518 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_02_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_02_01.parquet, row count: 5424
+Saved to: datamart/gold/label_store/label_store_2024_02_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-02-01
+Feature Store: 518 rows, 45 columns
+Label Store: 481 rows, 5 columns
+======================================================================
+
+[15/24] Processing 2024-03-01...
+
+======================================================================
+Processing Gold Layer for 2024-03-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_03_01.parquet, row count: 5425
+Filtered to MOB=0 (application time): 511 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_03_01.parquet, row count: 511
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_03_01.parquet, row count: 511
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_03_01.parquet, row count: 8974
+Feature store created with 511 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_03_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_03_01.parquet, row count: 5425
+Saved to: datamart/gold/label_store/label_store_2024_03_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-03-01
+Feature Store: 511 rows, 45 columns
+Label Store: 454 rows, 5 columns
+======================================================================
+
+[16/24] Processing 2024-04-01...
+
+======================================================================
+Processing Gold Layer for 2024-04-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_04_01.parquet, row count: 5417
+Filtered to MOB=0 (application time): 513 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_04_01.parquet, row count: 513
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_04_01.parquet, row count: 513
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_04_01.parquet, row count: 8974
+Feature store created with 513 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_04_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_04_01.parquet, row count: 5417
+Saved to: datamart/gold/label_store/label_store_2024_04_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-04-01
+Feature Store: 513 rows, 45 columns
+Label Store: 487 rows, 5 columns
+======================================================================
+
+[17/24] Processing 2024-05-01...
+
+======================================================================
+Processing Gold Layer for 2024-05-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_05_01.parquet, row count: 5391
+Filtered to MOB=0 (application time): 491 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_05_01.parquet, row count: 491
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_05_01.parquet, row count: 491
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_05_01.parquet, row count: 8974
+Feature store created with 491 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_05_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_05_01.parquet, row count: 5391
+Saved to: datamart/gold/label_store/label_store_2024_05_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-05-01
+Feature Store: 491 rows, 45 columns
+Label Store: 491 rows, 5 columns
+======================================================================
+
+[18/24] Processing 2024-06-01...
+
+======================================================================
+Processing Gold Layer for 2024-06-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_06_01.parquet, row count: 5418
+Filtered to MOB=0 (application time): 498 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_06_01.parquet, row count: 498
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_06_01.parquet, row count: 498
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_06_01.parquet, row count: 8974
+Feature store created with 498 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_06_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_06_01.parquet, row count: 5418
+Saved to: datamart/gold/label_store/label_store_2024_06_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-06-01
+Feature Store: 498 rows, 45 columns
+Label Store: 489 rows, 5 columns
+======================================================================
+
+[19/24] Processing 2024-07-01...
+
+======================================================================
+Processing Gold Layer for 2024-07-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_07_01.parquet, row count: 5442
+Filtered to MOB=0 (application time): 505 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_07_01.parquet, row count: 505
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_07_01.parquet, row count: 505
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_07_01.parquet, row count: 8974
+Feature store created with 505 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_07_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_07_01.parquet, row count: 5442
+Saved to: datamart/gold/label_store/label_store_2024_07_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-07-01
+Feature Store: 505 rows, 45 columns
+Label Store: 485 rows, 5 columns
+======================================================================
+
+[20/24] Processing 2024-08-01...
+
+======================================================================
+Processing Gold Layer for 2024-08-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_08_01.parquet, row count: 5531
+Filtered to MOB=0 (application time): 543 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_08_01.parquet, row count: 543
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_08_01.parquet, row count: 543
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_08_01.parquet, row count: 8974
+Feature store created with 543 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_08_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_08_01.parquet, row count: 5531
+Saved to: datamart/gold/label_store/label_store_2024_08_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-08-01
+Feature Store: 543 rows, 45 columns
+Label Store: 518 rows, 5 columns
+======================================================================
+
+[21/24] Processing 2024-09-01...
+
+======================================================================
+Processing Gold Layer for 2024-09-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_09_01.parquet, row count: 5537
+Filtered to MOB=0 (application time): 493 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_09_01.parquet, row count: 493
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_09_01.parquet, row count: 493
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_09_01.parquet, row count: 8974
+Feature store created with 493 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_09_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_09_01.parquet, row count: 5537
+Saved to: datamart/gold/label_store/label_store_2024_09_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-09-01
+Feature Store: 493 rows, 45 columns
+Label Store: 511 rows, 5 columns
+======================================================================
+
+[22/24] Processing 2024-10-01...
+
+======================================================================
+Processing Gold Layer for 2024-10-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_10_01.parquet, row count: 5502
+Filtered to MOB=0 (application time): 456 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_10_01.parquet, row count: 456
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_10_01.parquet, row count: 456
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_10_01.parquet, row count: 8974
+Feature store created with 456 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_10_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_10_01.parquet, row count: 5502
+Saved to: datamart/gold/label_store/label_store_2024_10_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-10-01
+Feature Store: 456 rows, 45 columns
+Label Store: 513 rows, 5 columns
+======================================================================
+
+[23/24] Processing 2024-11-01...
+
+======================================================================
+Processing Gold Layer for 2024-11-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_11_01.parquet, row count: 5501
+Filtered to MOB=0 (application time): 488 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_11_01.parquet, row count: 488
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_11_01.parquet, row count: 488
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_11_01.parquet, row count: 8974
+Feature store created with 488 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_11_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_11_01.parquet, row count: 5501
+Saved to: datamart/gold/label_store/label_store_2024_11_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-11-01
+Feature Store: 488 rows, 45 columns
+Label Store: 491 rows, 5 columns
+======================================================================
+
+[24/24] Processing 2024-12-01...
+
+======================================================================
+Processing Gold Layer for 2024-12-01
+Feature Store: MOB=0 (Application Time)
+Label Store: MOB=6, DPD>=30 (6-month Default Observation)
+======================================================================
+
+1. Creating Feature Store (MOB=0 - Application Time Features)...
+Loaded loan_daily from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_12_01.parquet, row count: 5531
+Filtered to MOB=0 (application time): 515 rows
+Loaded attributes from: datamart/silver/silver_attributes/silver_attributes_2024_12_01.parquet, row count: 515
+Loaded financials from: datamart/silver/silver_financials/silver_financials_2024_12_01.parquet, row count: 515
+Loaded clickstream from: datamart/silver/silver_clickstream/silver_clickstream_2024_12_01.parquet, row count: 8974
+Feature store created with 515 rows and 45 columns
+Saved to: datamart/gold/feature_store/feature_store_2024_12_01.parquet
+Feature Store completed
+
+2. Creating Label Store (MOB=6 - 6-month Default Labels)...
+Loaded from: datamart/silver/silver_loan_daily/silver_loan_daily_2024_12_01.parquet, row count: 5531
+Saved to: datamart/gold/label_store/label_store_2024_12_01.parquet
+Label Store completed
+
+======================================================================
+Gold Layer Processing Complete for 2024-12-01
+Feature Store: 515 rows, 45 columns
+Label Store: 498 rows, 5 columns
+======================================================================
+
+
+======================================================================
+FEATURE STORE SUMMARY
+======================================================================
+Feature Store row count: 11974
+Feature Store columns: 45
+
+Column names: ['Customer_ID', 'loan_id', 'loan_start_date', 'tenure', 'loan_amt', 'snapshot_date', 'customer_age', 'customer_occupation', 'age_group', 'occupation_category', 'Annual_Income', 'Monthly_Inhand_Salary', 'Num_Bank_Accounts', 'Num_Credit_Card', 'Interest_Rate', 'Num_of_Loan', 'Delay_from_due_date', 'Num_of_Delayed_Payment', 'Outstanding_Debt', 'Credit_Utilization_Ratio', 'Total_EMI_per_month', 'Amount_invested_monthly', 'Monthly_Balance', 'debt_to_income_ratio', 'income_category', 'fe_1', 'fe_2', 'fe_3', 'fe_4', 'fe_5', 'fe_6', 'fe_7', 'fe_8', 'fe_9', 'fe_10', 'fe_11', 'fe_12', 'fe_13', 'fe_14', 'fe_15', 'fe_16', 'fe_17', 'fe_18', 'fe_19', 'fe_20']
+
+Feature Store Schema:
+root
+ |-- Customer_ID: string (nullable = true)
+ |-- loan_id: string (nullable = true)
+ |-- loan_start_date: date (nullable = true)
+ |-- tenure: integer (nullable = true)
+ |-- loan_amt: float (nullable = true)
+ |-- snapshot_date: date (nullable = true)
+ |-- customer_age: integer (nullable = true)
+ |-- customer_occupation: string (nullable = true)
+ |-- age_group: string (nullable = true)
+ |-- occupation_category: string (nullable = true)
+ |-- Annual_Income: float (nullable = true)
+ |-- Monthly_Inhand_Salary: float (nullable = true)
+ |-- Num_Bank_Accounts: integer (nullable = true)
+ |-- Num_Credit_Card: integer (nullable = true)
+ |-- Interest_Rate: float (nullable = true)
+ |-- Num_of_Loan: integer (nullable = true)
+ |-- Delay_from_due_date: integer (nullable = true)
+ |-- Num_of_Delayed_Payment: integer (nullable = true)
+ |-- Outstanding_Debt: float (nullable = true)
+ |-- Credit_Utilization_Ratio: float (nullable = true)
+ |-- Total_EMI_per_month: float (nullable = true)
+ |-- Amount_invested_monthly: float (nullable = true)
+ |-- Monthly_Balance: float (nullable = true)
+ |-- debt_to_income_ratio: float (nullable = true)
+ |-- income_category: string (nullable = true)
+ |-- fe_1: float (nullable = true)
+ |-- fe_2: float (nullable = true)
+ |-- fe_3: float (nullable = true)
+ |-- fe_4: float (nullable = true)
+ |-- fe_5: float (nullable = true)
+ |-- fe_6: float (nullable = true)
+ |-- fe_7: float (nullable = true)
+ |-- fe_8: float (nullable = true)
+ |-- fe_9: float (nullable = true)
+ |-- fe_10: float (nullable = true)
+ |-- fe_11: float (nullable = true)
+ |-- fe_12: float (nullable = true)
+ |-- fe_13: float (nullable = true)
+ |-- fe_14: float (nullable = true)
+ |-- fe_15: float (nullable = true)
+ |-- fe_16: float (nullable = true)
+ |-- fe_17: float (nullable = true)
+ |-- fe_18: float (nullable = true)
+ |-- fe_19: float (nullable = true)
+ |-- fe_20: float (nullable = true)
+
+
+Sample Data:
++-----------+---------------------+---------------+------+--------+-------------+------------+-------------------+---------+-------------------+-------------+---------------------+-----------------+---------------+-------------+-----------+-------------------+----------------------+----------------+------------------------+-------------------+-----------------------+---------------+--------------------+---------------+------+-----+-----+-----+-----+-----+-----+-----+------+-----+-----+-----+-----+-----+------+-----+------+-----+-----+-----+
+|Customer_ID|loan_id              |loan_start_date|tenure|loan_amt|snapshot_date|customer_age|customer_occupation|age_group|occupation_category|Annual_Income|Monthly_Inhand_Salary|Num_Bank_Accounts|Num_Credit_Card|Interest_Rate|Num_of_Loan|Delay_from_due_date|Num_of_Delayed_Payment|Outstanding_Debt|Credit_Utilization_Ratio|Total_EMI_per_month|Amount_invested_monthly|Monthly_Balance|debt_to_income_ratio|income_category|fe_1  |fe_2 |fe_3 |fe_4 |fe_5 |fe_6 |fe_7 |fe_8 |fe_9  |fe_10|fe_11|fe_12|fe_13|fe_14|fe_15 |fe_16|fe_17 |fe_18|fe_19|fe_20|
++-----------+---------------------+---------------+------+--------+-------------+------------+-------------------+---------+-------------------+-------------+---------------------+-----------------+---------------+-------------+-----------+-------------------+----------------------+----------------+------------------------+-------------------+-----------------------+---------------+--------------------+---------------+------+-----+-----+-----+-----+-----+-----+-----+------+-----+-----+-----+-----+-----+------+-----+------+-----+-----+-----+
+|CUS_0x1037 |CUS_0x1037_2023_01_01|2023-01-01     |10    |10000.0 |2023-01-01   |45          |Accountant         |45-54    |Professional       |15989.085    |1086.4237            |5                |4              |2.0          |4          |13                 |15                    |665.82          |40.6977                 |33.79702           |80.46524               |284.38013      |3.1108508           |Low            |63.0  |118.0|80.0 |121.0|55.0 |193.0|111.0|112.0|-101.0|83.0 |164.0|105.0|-16.0|-81.0|-126.0|114.0|35.0  |85.0 |-73.0|76.0 |
+|CUS_0x1069 |CUS_0x1069_2023_01_01|2023-01-01     |10    |10000.0 |2023-01-01   |32          |Accountant         |25-34    |Professional       |58637.34     |4799.445             |4                |6              |10.0         |119        |9                  |17                    |208.8           |25.233143               |139.88501          |165.21062              |434.84888      |2.9146082           |Medium         |-108.0|182.0|123.0|4.0  |-56.0|27.0 |25.0 |-6.0 |284.0 |222.0|203.0|190.0|-14.0|-96.0|200.0 |35.0 |130.0 |94.0 |111.0|75.0 |
+|CUS_0x114a |CUS_0x114a_2023_01_01|2023-01-01     |10    |10000.0 |2023-01-01   |43          |Developer          |35-44    |Technical          |15305.46     |1230.455             |0                |7              |2.0          |2          |14                 |2                     |642.42          |27.525112               |20.301655          |64.77848               |327.96536      |1.6499307           |Low            |-13.0 |8.0  |87.0 |166.0|214.0|-98.0|215.0|152.0|129.0 |139.0|14.0 |203.0|26.0 |86.0 |171.0 |125.0|-130.0|354.0|17.0 |302.0|
+|CUS_0x1184 |CUS_0x1184_2023_01_01|2023-01-01     |10    |10000.0 |2023-01-01   |49          |Lawyer             |45-54    |Professional       |19867.475    |1396.6229            |3                |5              |11.0         |3          |10                 |9                     |707.29          |26.68979                |42.60688           |23.460943              |313.59445      |3.0507076           |Low            |-85.0 |45.0 |200.0|89.0 |128.0|54.0 |76.0 |51.0 |61.0  |139.0|6.0  |197.0|172.0|96.0 |174.0 |163.0|37.0  |207.0|180.0|118.0|
+|CUS_0x1297 |CUS_0x1297_2023_01_01|2023-01-01     |10    |10000.0 |2023-01-01   |46          |Manager            |45-54    |Management         |57738.06     |4881.505             |9                |8              |30.0         |9          |61                 |24                    |3916.47         |25.742142               |296.28415          |53.82118               |388.0452       |6.069525            |Medium         |55.0  |120.0|226.0|-86.0|253.0|97.0 |107.0|68.0 |103.0 |126.0|34.0 |12.0 |76.0 |43.0 |183.0 |159.0|-26.0 |104.0|118.0|184.0|
++-----------+---------------------+---------------+------+--------+-------------+------------+-------------------+---------+-------------------+-------------+---------------------+-----------------+---------------+-------------+-----------+-------------------+----------------------+----------------+------------------------+-------------------+-----------------------+---------------+--------------------+---------------+------+-----+-----+-----+-----+-----+-----+-----+------+-----+-----+-----+-----+-----+------+-----+------+-----+-----+-----+
+only showing top 5 rows
+
+
+======================================================================
+LABEL STORE SUMMARY
+======================================================================
+Label Store row count: 8974
+
+Label distribution:
++-----+-----+
+|label|count|
++-----+-----+
+|    0| 6383|
+|    1| 2591|
++-----+-----+
+
+
+Sample Data:
++---------------------+-----------+-----+----------+-------------+
+|loan_id              |Customer_ID|label|label_def |snapshot_date|
++---------------------+-----------+-----+----------+-------------+
+|CUS_0x1037_2023_01_01|CUS_0x1037 |0    |30dpd_6mob|2023-07-01   |
+|CUS_0x1069_2023_01_01|CUS_0x1069 |0    |30dpd_6mob|2023-07-01   |
+|CUS_0x114a_2023_01_01|CUS_0x114a |0    |30dpd_6mob|2023-07-01   |
+|CUS_0x1184_2023_01_01|CUS_0x1184 |0    |30dpd_6mob|2023-07-01   |
+|CUS_0x1297_2023_01_01|CUS_0x1297 |1    |30dpd_6mob|2023-07-01   |
++---------------------+-----------+-----+----------+-------------+
+only showing top 5 rows
+
